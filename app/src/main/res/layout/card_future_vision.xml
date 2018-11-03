@@ -25,27 +25,9 @@
         android:id="@+id/summary_project"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" n Feb 6, 2016Hi Steven!Thank
-        you for the reply! Very interesting stuff i did not know
-         about. So to follow up, essentially could i hide the Imageview,
-         then have a button in my view that when pressed i can write some
-         code under that action to show the image view and hide the text
-         view? And vice versa?Essentially what i would like to do
-         specifically is have a button that says  when it was pressed, i
-         would like the imageview to show and textview to hide and change
-         the button text to show  Then when it was pressed again, switch it
-          back to the way it was, textview visible and imageview hidden and
-           button text showing . Is what i am brainstorming possible using
-           what you mentioned above?Thanks again for the helpSteven Deutsch
-            on Feb 6, 2016Alexander,Yes this would be possible using this
-             approach. You would want to set the hidden property of the
-             items you don't want to see by default when you build the app
-             in the attributes inspector. Then you would make it so when you
-             press the button it sets their hidden property to false (making
-              them appear). On this button press, you would also setTitle of
-
-               the button to the new message you want to display. You can use
-                conditional coding, either a ternary operator or if "
+        android:ellipsize="end"
+        android:maxLines="7"
+        android:text=" n Feb 6, 2016Hi Steven!Thank you for the reply! Very interesting stuff i did not know about. So to follow up, essentially could i hide the Imageview, then have a button in my view that when pressed i can write some code under that action to show the image view and hide the text view? And vice versa?Essentially what i would like to do specifically is have a button that says  when it was pressed, i would like the imageview to show and textview to hide and change the button text to show  Then when it was pressed again, switch it back to the way it was, textview visible and imageview hidden and button text showing . Is what i am brainstorming possible using what you mentioned above?Thanks again for the helpSteven Deutsch on Feb 6, 2016Alexander,Yes this would be possible using this approach. You would want to set the hidden property of the items you don't want to see by default when you build the app in the attributes inspector. Then you would make it so when you press the button it sets their hidden property to false (making them appear). On this button press, you would also setTitle of the button to the new message you want to display. You can use conditional coding, either a ternary operator or if statements to check the state of the button's hidden property each time the button is pressed. If it is true, set to false - else set back to true. Does this make sense?"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/summaryMember" />
 
