@@ -1,4 +1,5 @@
 package com.example.volley.zeon.RecyclerAdapter;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,14 +8,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.volley.zeon.Model.Project;
 import com.example.volley.zeon.R;
+
 import java.util.List;
 
 public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> {
     Context context;
 
     List<Project> projectList;
+
     /**
      * Create a new {@link AdapterProject} object.
      *
@@ -71,13 +75,13 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> 
 
             view.setOnClickListener(this);
 
-            mTitleProject = (TextView) view.findViewById(R.id.name_project);
+            mTitleProject = view.findViewById(R.id.name_project);
 
-            mImageProject = (ImageView) view.findViewById(R.id.project_photo);
+            mImageProject = view.findViewById(R.id.project_photo);
 
-            mShortInfo = (TextView) view.findViewById(R.id.summary_project);
+            mShortInfo = view.findViewById(R.id.summary_project);
 
-            mSeeMoreProject = (Button) view.findViewById(R.id.button_see_more);
+            mSeeMoreProject = view.findViewById(R.id.button_see_more);
         }
 
         @Override
