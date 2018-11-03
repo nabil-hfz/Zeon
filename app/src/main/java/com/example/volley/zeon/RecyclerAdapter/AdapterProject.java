@@ -1,0 +1,87 @@
+package com.example.volley.zeon.RecyclerAdapter;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.example.volley.zeon.Model.Project;
+import com.example.volley.zeon.R;
+import java.util.List;
+
+public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> {
+    Context context;
+
+    List<Project> projectList;
+    /**
+     * Create a new {@link AdapterProject} object.
+     *
+     * @param context     is the current context (i.e. Activity) that the adapter is being created in.
+     * @param projectList is the list of {@link Project  }s to be displayed.
+     */
+    public AdapterProject(Context context, List<Project> projectList) {
+        this.context = context;
+        this.projectList = projectList;
+    }
+
+    @Override
+    public AdapterProject.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_project, parent, false);
+        return new Holder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(AdapterProject.Holder holder, int position) {
+
+        Project currentProject = projectList.get(position);
+
+        // Get the  short info about project from the currentProject object and set this text on
+        // the ShortInfo TextView.
+
+        holder.mShortInfo.setText(currentProject.getShortInfo());
+
+        // Get project image from the currentProject object and set this image on
+        holder.mImageProject.setImageResource(currentProject.getImageProject());
+
+        // Make sure the view is visible
+        holder.mImageProject.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return projectList.size();
+    }
+
+    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private TextView mTitleProject;
+
+        private TextView mShortInfo;
+
+        private ImageView mImageProject;
+
+        private Button mSeeMoreProject;
+
+        public Holder(View view) {
+
+            super(view);
+
+            view.setOnClickListener(this);
+
+            mTitleProject = (TextView) view.findViewById(R.id.name_project);
+
+            mImageProject = (ImageView) view.findViewById(R.id.project_photo);
+
+            mShortInfo = (TextView) view.findViewById(R.id.summary_project);
+
+            mSeeMoreProject = (Button) view.findViewById(R.id.button_see_more);
+        }
+
+        @Override
+        public void onClick(View view) {
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_main"
+             android:checked="true"
+             android:icon="@drawable/ic_home"
+            android:title="@string/main_news" />
+        <item
+            android:id="@+id/nav_division"
+             android:icon="@drawable/ic_developer"
+            android:title="@string/division" />
+        <item
+            android:id="@+id/nav_project"
+            android:icon="@drawable/ic_project"
+            android:title="@string/projects" />
+        <item
+            android:id="@+id/nav_vision"
+            android:icon="@drawable/ic_future_vision"
+            android:title="@string/future_vision" />
+
+    </group>
+
+    <item
+        android:checkableBehavior="single"
+        android:title="@string/more">
+        <menu>
+
+            <item
+                android:id="@+id/nav_contact_us"
+                android:icon="@drawable/ic_call"
+                android:title="@string/contact_us" />
+            <item
+                android:id="@+id/nav_about_us"
+                android:icon="@drawable/ic_info"
+                android:title="@string/about_us" />
+
+        </menu>
+    </item>
+</menu>
