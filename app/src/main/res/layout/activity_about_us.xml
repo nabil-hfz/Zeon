@@ -125,7 +125,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <TextView
-                        android:id="@+id/nabek"
+                        android:id="@+id/contact_us_press"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/contact_us_email"

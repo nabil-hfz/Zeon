@@ -1,9 +1,12 @@
 package com.example.volley.zeon.MenuActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.volley.zeon.R;
 
@@ -26,6 +29,19 @@ public class aboutUsActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(TEAM_NAME);
 
-        Log.v(LOG_TAG, "\n messsssssssssssssssssssssssssssssssage  :::::::::: naebel \n ");
+        TextView textViewContactUsPress = findViewById(R.id.contact_us_press);
+
+        textViewContactUsPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent emailIntent = new Intent(Intent.ACTION_VIEW);
+                emailIntent.setData(Uri.parse("https://www.facebook.com/MahmoudTrro"));
+                if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(emailIntent);
+                }
+            }
+        });
+
+
     }
 }

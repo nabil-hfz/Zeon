@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.volley.zeon.Model.FutureVision;
 import com.example.volley.zeon.R;
@@ -55,7 +54,6 @@ public class FutureVisionActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setHasFixedSize(true);
-        Log.v(LOG_TAG, "\n messsssssssssssssssssssssssssssssssage  :::::::::: naebel \n ");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
