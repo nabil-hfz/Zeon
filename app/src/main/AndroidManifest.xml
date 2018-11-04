@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".MenuActivity.DivisionActivity" />
         <activity android:name=".MenuActivity.ProjectActivity" />
-        <activity android:name=".MenuActivity.VisionActivity" />
+        <activity android:name=".MenuActivity.FutureVisionActivity" />
         <activity android:name=".MenuActivity.ContactAvtivity" />
         <activity android:name=".MenuActivity.aboutUsActivity"></activity>
     </application>

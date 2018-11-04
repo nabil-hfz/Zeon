@@ -6,6 +6,11 @@ package com.example.volley.zeon.Model;
  */
 
 public class Division {
+
+    /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = Division.class.getSimpleName();
     /**
      * name member resource for the member
      */

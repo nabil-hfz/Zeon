@@ -3,6 +3,11 @@ package com.example.volley.zeon.Model;
 public class Project {
 
     /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = Project.class.getSimpleName();
+
+    /**
      * Title (name) of project resource for the Project
      */
     private String mTitleProject;

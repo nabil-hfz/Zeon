@@ -4,14 +4,19 @@ public class AboutUS {
 
 
     /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = AboutUS.class.getSimpleName();
+
+    /**
      * summary about Conditions for foundation the team resource .
      */
-    private String mShortSummaryforFoundationTeam;
+    private String mShortSummaryForFoundationTeam;
 
     /**
      * Group photo of the team resource ID .
      */
-    private int mImagephotoOfTheTeam;
+    private int mImagePhotoOfTheTeam;
 
     /**
      * Address " Contact us " for the team resource .
@@ -19,25 +24,25 @@ public class AboutUS {
     private String mAddressContactUsTeam;
 
     public AboutUS(String mShortSummaryforFoundationTeam, int mImagephotoOfTheTeam, String mAddressContactUsTeam) {
-        this.mShortSummaryforFoundationTeam = mShortSummaryforFoundationTeam;
-        this.mImagephotoOfTheTeam = mImagephotoOfTheTeam;
+        this.mShortSummaryForFoundationTeam = mShortSummaryforFoundationTeam;
+        this.mImagePhotoOfTheTeam = mImagephotoOfTheTeam;
         this.mAddressContactUsTeam = mAddressContactUsTeam;
     }
 
     public String getShortSummaryforFoundationTeam() {
-        return mShortSummaryforFoundationTeam;
+        return mShortSummaryForFoundationTeam;
     }
 
     public void setShortSummaryforFoundationTeam(String mShortSummaryforFoundationTeam) {
-        this.mShortSummaryforFoundationTeam = mShortSummaryforFoundationTeam;
+        this.mShortSummaryForFoundationTeam = mShortSummaryforFoundationTeam;
     }
 
     public int getImagephotoOfTheTeam() {
-        return mImagephotoOfTheTeam;
+        return mImagePhotoOfTheTeam;
     }
 
     public void setImagephotoOfTheTeam(int mImagephotoOfTheTeam) {
-        this.mImagephotoOfTheTeam = mImagephotoOfTheTeam;
+        this.mImagePhotoOfTheTeam = mImagephotoOfTheTeam;
     }
 
     public String getAddressContactUsTeam() {

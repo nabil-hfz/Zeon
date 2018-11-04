@@ -16,6 +16,11 @@ import java.util.List;
 
 public class AdpterDivions extends RecyclerView.Adapter<AdpterDivions.Holder> {
 
+    /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = AdpterDivions.class.getSimpleName();
+
     Context context;
 
     List<Division> divisionList;
@@ -73,7 +78,7 @@ public class AdpterDivions extends RecyclerView.Adapter<AdpterDivions.Holder> {
         return divisionList.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class Holder extends RecyclerView.ViewHolder {
 
         private TextView mNameMember;
 
@@ -89,22 +94,15 @@ public class AdpterDivions extends RecyclerView.Adapter<AdpterDivions.Holder> {
         public Holder(View view) {
             super(view);
 
-            view.setOnClickListener(this);
+            mNameMember = view.findViewById(R.id.name_members);
 
-            mNameMember = (TextView) view.findViewById(R.id.name_members);
+            mMajorityMember = view.findViewById(R.id.majority_member);
 
-            mMajorityMember = (TextView) view.findViewById(R.id.majority_member);
+            mImageMember = view.findViewById(R.id.member_photo);
 
-            mImageMember = (ImageView) view.findViewById(R.id.member_photo);
+            mInfoSummaryMember = view.findViewById(R.id.summary_member);
 
-            mInfoSummaryMember = (TextView) view.findViewById(R.id.summary_member);
-
-            mSeeMoreProject = (Button) view.findViewById(R.id.button_see_more);
-        }
-
-        @Override
-        public void onClick(View view) {
-
+            mSeeMoreProject = view.findViewById(R.id.button_see_more);
         }
     }
 }

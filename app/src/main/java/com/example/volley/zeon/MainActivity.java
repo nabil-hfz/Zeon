@@ -13,11 +13,15 @@ import android.view.MenuItem;
 
 import com.example.volley.zeon.MenuActivity.ContactAvtivity;
 import com.example.volley.zeon.MenuActivity.DivisionActivity;
+import com.example.volley.zeon.MenuActivity.FutureVisionActivity;
 import com.example.volley.zeon.MenuActivity.ProjectActivity;
-import com.example.volley.zeon.MenuActivity.VisionActivity;
 import com.example.volley.zeon.MenuActivity.aboutUsActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(projectsIntent);
                 return true;
             case (R.id.nav_vision):
-                Intent visionIntent = new Intent(MainActivity.this, VisionActivity.class);
+                Intent visionIntent = new Intent(MainActivity.this, FutureVisionActivity.class);
                 startActivity(visionIntent);
                 return true;
             case (R.id.nav_contact_us):

@@ -3,6 +3,10 @@ package com.example.volley.zeon.Model;
 public class FutureVision {
 
     /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = FutureVision.class.getSimpleName();
+    /**
      * Short article resource about the Team orientations
      */
     private String mShortArticleFutureVisiom;
@@ -10,11 +14,12 @@ public class FutureVision {
     /**
      * Meaningful Photo resource ID about the Team orientations
      */
-    private int mImageArticleFutureVisiom;
+    private int mImageArticleFutureVision;
 
-    public FutureVision(String mShortArticleFutureVisiom, int mImageArticleFutureVisiom) {
+    public FutureVision(String mShortArticleFutureVisiom, int mImageArticleFutureVision) {
+
         this.mShortArticleFutureVisiom = mShortArticleFutureVisiom;
-        this.mImageArticleFutureVisiom = mImageArticleFutureVisiom;
+        this.mImageArticleFutureVision = mImageArticleFutureVision;
     }
 
     public String getShortArticleFutureVisiom() {
@@ -26,10 +31,10 @@ public class FutureVision {
     }
 
     public int getImageArticleFutureVisiom() {
-        return mImageArticleFutureVisiom;
+        return mImageArticleFutureVision;
     }
 
-    public void setImageArticleFutureVisiom(int mImageArticleFutureVisiom) {
-        this.mImageArticleFutureVisiom = mImageArticleFutureVisiom;
+    public void setImageArticleFutureVisiom(int mImageArticleFutureVision) {
+        this.mImageArticleFutureVision = mImageArticleFutureVision;
     }
 }

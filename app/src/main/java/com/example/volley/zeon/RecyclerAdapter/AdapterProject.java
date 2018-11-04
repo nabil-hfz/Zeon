@@ -15,6 +15,12 @@ import com.example.volley.zeon.R;
 import java.util.List;
 
 public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> {
+
+    /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = AdapterProject.class.getSimpleName();
+
     Context context;
 
     List<Project> projectList;
@@ -59,7 +65,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> 
         return projectList.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class Holder extends RecyclerView.ViewHolder {
 
         private TextView mTitleProject;
 
@@ -73,8 +79,6 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> 
 
             super(view);
 
-            view.setOnClickListener(this);
-
             mTitleProject = view.findViewById(R.id.name_project);
 
             mImageProject = view.findViewById(R.id.project_photo);
@@ -82,10 +86,6 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> 
             mShortInfo = view.findViewById(R.id.summary_project);
 
             mSeeMoreProject = view.findViewById(R.id.button_see_more);
-        }
-
-        @Override
-        public void onClick(View view) {
         }
     }
 }
