@@ -59,7 +59,7 @@ public class FutureVisionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.card_future_vision);
+        setContentView(R.layout.activity_division);
 
         List<FutureVision> futureVisionList = new ArrayList<FutureVision>();
 

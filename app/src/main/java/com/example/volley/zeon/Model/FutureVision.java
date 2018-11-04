@@ -9,7 +9,7 @@ public class FutureVision {
     /**
      * Short article resource about the Team orientations
      */
-    private String mShortArticleFutureVisiom;
+    private String mShortArticleFutureVision;
 
     /**
      * Meaningful Photo resource ID about the Team orientations
@@ -18,19 +18,19 @@ public class FutureVision {
 
     public FutureVision(String mShortArticleFutureVisiom, int mImageArticleFutureVision) {
 
-        this.mShortArticleFutureVisiom = mShortArticleFutureVisiom;
+        this.mShortArticleFutureVision = mShortArticleFutureVisiom;
         this.mImageArticleFutureVision = mImageArticleFutureVision;
     }
 
     public String getShortArticleFutureVisiom() {
-        return mShortArticleFutureVisiom;
+        return mShortArticleFutureVision;
     }
 
-    public void setShortArticleFutureVisiom(String mShortArticleFutureVisiom) {
-        this.mShortArticleFutureVisiom = mShortArticleFutureVisiom;
+    public void setShortArticleFutureVision(String mShortArticleFutureVisiom) {
+        this.mShortArticleFutureVision = mShortArticleFutureVisiom;
     }
 
-    public int getImageArticleFutureVisiom() {
+    public int getImageArticleFutureVision() {
         return mImageArticleFutureVision;
     }
 

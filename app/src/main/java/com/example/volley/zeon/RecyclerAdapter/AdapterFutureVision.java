@@ -59,7 +59,7 @@ public class AdapterFutureVision extends RecyclerView.Adapter<AdapterFutureVisio
         holder.mShortArticleFutureVision.setText(currentFutureVision.getShortArticleFutureVisiom());
 
         // Get Future Vision image from the currentFutureVision object and set this image on
-        holder.mImageArticleFutureVision.setImageResource(currentFutureVision.getImageArticleFutureVisiom());
+        holder.mImageArticleFutureVision.setImageResource(currentFutureVision.getImageArticleFutureVision());
 
         // Make sure the view is visible
         holder.mImageArticleFutureVision.setVisibility(View.VISIBLE);
@@ -83,7 +83,7 @@ public class AdapterFutureVision extends RecyclerView.Adapter<AdapterFutureVisio
 
             mShortArticleFutureVision = view.findViewById(R.id.future_vision_image);
 
-            mImageArticleFutureVision = view.findViewById(R.id.summary_project);
+            mImageArticleFutureVision = view.findViewById(R.id.summary_project_future_vision);
         }
     }
 }

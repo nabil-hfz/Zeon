@@ -12,6 +12,8 @@
     <dimen name="height_Button_seeMore">40dp</dimen>
     <dimen name="list_item_future_vision_photo_width">144dp</dimen>
     <dimen name="list_item_future_vision_photo_hight">144dp</dimen>
+    <dimen name="detail_backdrop_height">256dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
 
 
     <!-- Default screen margins, per the Android Design guidelines. -->
