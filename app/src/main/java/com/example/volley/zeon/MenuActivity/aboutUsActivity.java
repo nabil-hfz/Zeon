@@ -41,7 +41,5 @@ public class aboutUsActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }
