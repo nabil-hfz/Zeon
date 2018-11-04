@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.volley.zeon.Model.FutureVision;
@@ -13,6 +12,8 @@ import com.example.volley.zeon.R;
 
 import java.util.List;
 import java.util.concurrent.Future;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -75,15 +76,15 @@ public class AdapterFutureVision extends RecyclerView.Adapter<AdapterFutureVisio
 
         private TextView mShortArticleFutureVision;
 
-        private ImageView mImageArticleFutureVision;
+        private CircleImageView mImageArticleFutureVision;
 
         public Holder(View view) {
 
             super(view);
 
-            mShortArticleFutureVision = view.findViewById(R.id.future_vision_image);
+            mShortArticleFutureVision = view.findViewById(R.id.summary_project_future_vision);
 
-            mImageArticleFutureVision = view.findViewById(R.id.summary_project_future_vision);
+            mImageArticleFutureVision = view.findViewById(R.id.future_vision_image);
         }
     }
 }
