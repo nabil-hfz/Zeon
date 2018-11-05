@@ -8,8 +8,10 @@
     <string name="projects">Projects</string>
     <string name="future_vision">Future vision</string>
     <string name="about_us">About us</string>
+    <string name="contact_us">Contact us</string>
     <string name="contact_us_your_name">Your name</string>
-    <string name="contact_us_your_email">Your email</string>
+    <string name="contact_us_your_Email">Your email</string>
+    <string name="contact_us_your_email">like : mahmoudtrro@example.com </string>
     <string name="contact_us_subject">Subject</string>
     <string name="more">More</string>
     <string name="team_Info">We love each other very much</string>
@@ -26,5 +28,6 @@
     <string name="feed_back_type2">Suggestion</string>
     <string name="feed_back_type3">Praise</string>
     <string name="feed_back_type4">Bug</string>
+    <string name="feed_back_type5">Other</string>
     <string name="feed_back_body_detail">Feedback Details...</string>
 </resources>

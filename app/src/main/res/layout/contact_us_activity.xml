@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
     android:scrollbars="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F5F5F5"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/left_padding"
         tools:context=".MenuActivity.ContactActivity">
@@ -30,8 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:ellipsize="end"
             android:gravity="start|top"
             android:hint="@string/contact_us_your_name"
+            android:maxLines="1"
             android:paddingLeft="8dp" />
 
         <TextView
@@ -39,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="@string/contact_us_your_email"
+            android:text="@string/contact_us_your_Email"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#212121" />
 
@@ -48,8 +49,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:ellipsize="end"
             android:gravity="start|top"
             android:hint="@string/contact_us_your_email"
+            android:maxLines="2"
             android:paddingLeft="8dp" />
 
         <TextView
@@ -66,8 +69,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:ellipsize="end"
             android:gravity="start|top"
             android:hint="@string/contact_us_subject"
+            android:maxLines="1"
             android:paddingLeft="8dp" />
 
         <TextView
@@ -82,7 +87,7 @@
         <Spinner
             android:id="@+id/SpinnerFeedbackType"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:entries="@array/feed_back_type_list"
             android:prompt="@string/more"></Spinner>
 
@@ -101,6 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/left_padding"
+            android:ellipsize="end"
             android:hint="@string/feed_back_body_detail"
             android:inputType="textMultiLine|text"
             android:maxLines="10"
@@ -123,9 +129,7 @@
             android:text="@string/feedback_Button"
             android:textColor="@color/card_background"></Button>
 
-
     </LinearLayout>
-
 </ScrollView>
 
 

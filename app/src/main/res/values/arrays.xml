@@ -5,5 +5,6 @@
         <item>@string/feed_back_type2</item>
         <item>@string/feed_back_type3</item>
         <item>@string/feed_back_type4</item>
+        <item>@string/feed_back_type5</item>
     </string-array>
 </resources>

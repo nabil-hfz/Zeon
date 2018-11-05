@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.volley.zeon.MenuActivity.ContactAvtivity;
+import com.example.volley.zeon.MenuActivity.ContactActivity;
 import com.example.volley.zeon.MenuActivity.DivisionActivity;
 import com.example.volley.zeon.MenuActivity.FutureVisionActivity;
 import com.example.volley.zeon.MenuActivity.ProjectActivity;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(visionIntent);
                 return true;
             case (R.id.nav_contact_us):
-                Intent contactUsIntent = new Intent(MainActivity.this, ContactAvtivity.class);
+                Intent contactUsIntent = new Intent(MainActivity.this, ContactActivity.class);
                 startActivity(contactUsIntent);
                 return true;
             case (R.id.nav_about_us):
