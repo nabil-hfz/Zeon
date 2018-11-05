@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F5F5F5"
+        android:orientation="vertical"
+        android:padding="@dimen/left_padding"
+        tools:context=".MenuActivity.ContactActivity">
+
+
+        <TextView
+            android:id="@+id/your_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/contact_us_your_name"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#212121" />
+
+        <EditText
+            android:id="@+id/EditTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="start|top"
+            android:hint="@string/contact_us_your_name"
+            android:paddingLeft="8dp" />
+
+        <TextView
+            android:id="@+id/your_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/contact_us_your_email"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#212121" />
+
+        <EditText
+            android:id="@+id/EditTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="start|top"
+            android:hint="@string/contact_us_your_email"
+            android:paddingLeft="8dp" />
+
+        <TextView
+            android:id="@+id/subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/contact_us_subject"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#212121" />
+
+        <EditText
+            android:id="@+id/EditTextSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="start|top"
+            android:hint="@string/contact_us_subject"
+            android:paddingLeft="8dp" />
+
+        <TextView
+            android:id="@+id/ReasonForContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/ReasonForContact"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#212121" />
+
+        <Spinner
+            android:id="@+id/SpinnerFeedbackType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/feed_back_type_list"
+            android:prompt="@string/more"></Spinner>
+
+        <TextView
+            android:id="@+id/Reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/your_message_feedback"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#212121" />
+
+        <EditText
+            android:id="@+id/EditTextFeedbackDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/left_padding"
+            android:hint="@string/feed_back_body_detail"
+            android:inputType="textMultiLine|text"
+            android:maxLines="10"
+            android:paddingLeft="8dp" />
+
+        <CheckBox
+            android:id="@+id/CheckBoxResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/left_padding"
+            android:paddingLeft="8dp"
+            android:text="@string/feedback_response"></CheckBox>
+
+        <Button
+            android:id="@+id/ButtonSendFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/left_padding"
+            android:background="@color/colorPrimary"
+            android:text="@string/feedback_Button"
+            android:textColor="@color/card_background"></Button>
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+
+

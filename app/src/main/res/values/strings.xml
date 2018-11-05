@@ -8,9 +8,23 @@
     <string name="projects">Projects</string>
     <string name="future_vision">Future vision</string>
     <string name="about_us">About us</string>
-    <string name="contact_us">Contact us</string>
+    <string name="contact_us_your_name">Your name</string>
+    <string name="contact_us_your_email">Your email</string>
+    <string name="contact_us_subject">Subject</string>
     <string name="more">More</string>
     <string name="team_Info">We love each other very much</string>
     <string name="Condition_for_foundtion">we met in Damascus University </string>
     <string name="contact_us_email"> mahmoudtrro@gmail.com</string>
+    <string name="ReasonForContact"> Reason for contact</string>
+    <string name="your_message_feedback">Your message </string>
+    <string name="feedback_response">Would you like an email response</string>
+    <string name="feedback_Button">Send Feedback</string>
+    <!--Other string resources also defined  … -->
+
+
+    <string name="feed_back_type1">Financial Aid</string>
+    <string name="feed_back_type2">Suggestion</string>
+    <string name="feed_back_type3">Praise</string>
+    <string name="feed_back_type4">Bug</string>
+    <string name="feed_back_body_detail">Feedback Details...</string>
 </resources>

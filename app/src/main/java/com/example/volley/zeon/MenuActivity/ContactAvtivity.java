@@ -14,7 +14,7 @@ public class ContactAvtivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_avtivity);
+        setContentView(R.layout.contact_us_activity);
 
     }
 }
