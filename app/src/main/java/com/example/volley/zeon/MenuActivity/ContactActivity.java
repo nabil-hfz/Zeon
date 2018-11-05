@@ -12,6 +12,12 @@ import android.widget.Toast;
 
 import com.example.volley.zeon.R;
 
+/**
+ * Author of this class is Louay .
+ * <p>
+ * Update this class Nabil in in 2018/03/11
+ */
+
 public class ContactActivity extends AppCompatActivity {
 
     /**
@@ -22,7 +28,7 @@ public class ContactActivity extends AppCompatActivity {
     /**
      * TEAM EMAIL for send the  messages to it .
      */
-    private static final String TEAM_EMAIL = "mahmoudtrro@gmail.com";
+    private static final String[] TEAM_EMAIL = {"mahmoudtrro@gmail.com", "nabil.alhfz98@gmail.com"};
 
     /**
      * Name sender of  the  messages .
@@ -133,7 +139,7 @@ public class ContactActivity extends AppCompatActivity {
     private Intent handlingInfo() {
         Intent mail = new Intent(Intent.ACTION_SENDTO);
 
-        mail.putExtra(Intent.EXTRA_EMAIL, new String[]{TEAM_EMAIL});
+        mail.putExtra(Intent.EXTRA_EMAIL, new String[]{TEAM_EMAIL[1]});
 
         mail.putExtra(Intent.EXTRA_SUBJECT, mSubjectOfMessage);
 

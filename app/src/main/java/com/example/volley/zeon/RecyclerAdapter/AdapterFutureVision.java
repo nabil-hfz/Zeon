@@ -15,6 +15,9 @@ import java.util.concurrent.Future;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * Author of this class is Nabil  in 2018/01/11
+ */
 
 /**
  * Loads a list of FutureVision Activity by using an AdapterFutureVision with Recycler .

@@ -1,5 +1,16 @@
 package com.example.volley.zeon.Model;
 
+/**
+ * Author of this class is Nabil  in 2018/03/11
+ **/
+
+/**
+ * {@link FutureVision} represents a Future Vision of members team  .
+ * <p>
+ * It contains  Short Article Future Vision for  Team in String var .
+ * <p>
+ * It contains Image Photo Of Future Vision in int var .
+ */
 public class FutureVision {
 
     /**

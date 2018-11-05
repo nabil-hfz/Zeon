@@ -10,6 +10,12 @@ import android.widget.TextView;
 
 import com.example.volley.zeon.R;
 
+/**
+ * Author of this class is Louay .
+ * <p>
+ * Update this class Nabil in in 2018/03/11
+ */
+
 public class aboutUsActivity extends AppCompatActivity {
 
     /**

@@ -12,6 +12,11 @@ import com.example.volley.zeon.RecyclerAdapter.AdapterFutureVision;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Author of this class is Louay .
+ * <p>
+ * Update this class Nabil in in 2018/03/11
+ */
 public class FutureVisionActivity extends AppCompatActivity {
 
     /**

@@ -1,5 +1,19 @@
 package com.example.volley.zeon.Model;
 
+/**
+ * Author of this class is Nabil  in 2018/03/11
+ */
+
+/**
+ * {@link AboutUS} represents a Info about contact with members team  .
+ * <p>
+ * It contains  Short Summary For Foundation Team in String var .
+ * <p>
+ * It contains Image Photo Of The Team  in int var .
+ * <p>
+ * It contains Address to Contact to Zeon team  in String var .
+ */
+
 public class AboutUS {
 
 

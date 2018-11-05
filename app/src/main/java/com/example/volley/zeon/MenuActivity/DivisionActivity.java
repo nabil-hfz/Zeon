@@ -9,11 +9,17 @@ import android.widget.Toast;
 
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
-import com.example.volley.zeon.RecyclerAdapter.AdpterDivions;
+import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
 import com.example.volley.zeon.RecyclerItemClickListener.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Author of this class is Louay .
+ * <p>
+ * Update this class Nabil in in 2018/03/11
+ */
 
 public class DivisionActivity extends AppCompatActivity {
 
@@ -21,6 +27,7 @@ public class DivisionActivity extends AppCompatActivity {
      * Tag for the log messages
      */
     public static final String LOG_TAG = DivisionActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +41,7 @@ public class DivisionActivity extends AppCompatActivity {
                     R.drawable.zeon_boss,
                     "Mahmmod is very nice creative boss . he love his assistance in the Zeon team speacially nabel  "));
 
-        AdpterDivions adapter = new AdpterDivions(this, divisionList);
+        AdapterDivision adapter = new AdapterDivision(this, divisionList);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

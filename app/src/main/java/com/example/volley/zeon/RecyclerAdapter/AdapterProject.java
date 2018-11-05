@@ -14,6 +14,10 @@ import com.example.volley.zeon.R;
 
 import java.util.List;
 
+/**
+ * Author of this class is Nabil  in 2018/01/11
+ */
+
 public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> {
 
     /**

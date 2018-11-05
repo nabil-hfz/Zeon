@@ -1,5 +1,19 @@
 package com.example.volley.zeon.Model;
 
+
+/**
+ * Author of this class is Nabil  in 2018/03/11
+ **/
+
+/**
+ * {@link Project} represents a project of team  .
+ * <p>
+ * It contains  Title of Project for  Team in String var .
+ * <p>
+ * It contains  Short Info about this Project for  Team in String var .
+ * <p>
+ * It contains Image Photo Of this project in int var .
+ */
 public class Project {
 
     /**

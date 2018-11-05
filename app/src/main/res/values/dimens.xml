@@ -14,10 +14,6 @@
     <dimen name="list_item_future_vision_photo_hight">144dp</dimen>
     <dimen name="detail_backdrop_height">256dp</dimen>
     <dimen name="card_margin">16dp</dimen>
-
-
-    <!-- Default screen margins, per the Android Design guidelines. -->
-
     <dimen name="card_member_radius">5dp</dimen>
 
 </resources>

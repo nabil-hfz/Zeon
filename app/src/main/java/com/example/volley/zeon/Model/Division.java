@@ -1,9 +1,24 @@
 package com.example.volley.zeon.Model;
 
+
+/**
+ * Author of this class is Nabil  in 2018/03/11
+ */
+
 /**
  * {@link Division} represents a developers of members team  .
  * It contains a  string to represent the members in a card .
- */
+ * <p>
+ * It contains  Name Member Team in String var .
+ * <p>
+ * It contains Majority Member Of The Team  in String var .
+ * <p>
+ * It contains Image for team Member in int var .
+ * <p>
+ * It contains Summary Info about team Member in string var .
+ * <p>
+ * It contains Complete Info about team Member in string var .
+ **/
 
 public class Division {
 

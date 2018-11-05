@@ -14,25 +14,30 @@ import com.example.volley.zeon.R;
 
 import java.util.List;
 
-public class AdpterDivions extends RecyclerView.Adapter<AdpterDivions.Holder> {
+/**
+ * Author of this class is Nabil  in 2018/01/11
+ */
+
+
+public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder> {
 
     /**
      * Tag for the log messages
      */
-    public static final String LOG_TAG = AdpterDivions.class.getSimpleName();
+    public static final String LOG_TAG = AdapterDivision.class.getSimpleName();
 
     Context context;
 
     List<Division> divisionList;
 
     /**
-     * Create a new {@link AdpterDivions} object.
+     * Create a new {@link AdapterDivision} object.
      *
      * @param context      is the current context (i.e. Activity) that the adapter is being created in.
      * @param divisionList is the list of {@link Division }s to be displayed.
      */
 
-    public AdpterDivions(Context context, List<Division> divisionList) {
+    public AdapterDivision(Context context, List<Division> divisionList) {
         this.context = context;
         this.divisionList = divisionList;
     }
@@ -89,7 +94,6 @@ public class AdpterDivions extends RecyclerView.Adapter<AdpterDivions.Holder> {
         private TextView mInfoSummaryMember;
 
         private Button mSeeMoreProject;
-
 
         public Holder(View view) {
             super(view);
