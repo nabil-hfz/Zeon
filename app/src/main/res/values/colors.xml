@@ -2,11 +2,15 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#BBDEFB</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="nameMember">#000000</color>
     <color name="majorityMember">#4c4c4c</color>
     <color name="summaryMember">#4c4c4c</color>
     <color name="button_see_more">#6200ee</color>
     <color name="card_background">#ffffff</color>
+    <color name="invalid_Email_Text">#B71C1C</color>
+    <color name="invalid_Email_EditText">#D50000</color>
+    <color name="valid_Email_Text">#558B2F</color>
+    <color name="valid_Email_EditText">#64DD17</color>
 </resources>

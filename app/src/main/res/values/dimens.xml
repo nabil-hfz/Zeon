@@ -8,7 +8,7 @@
     <dimen name="Top_padding_summary">8dp</dimen>
     <dimen name="width_menu_item">48dp</dimen>
     <dimen name="hight_image_member">194dp</dimen>
-     <dimen name="width_Button_seeMore">112dp</dimen>
+    <dimen name="width_Button_seeMore">112dp</dimen>
     <dimen name="height_Button_seeMore">40dp</dimen>
     <dimen name="list_item_future_vision_photo_width">144dp</dimen>
     <dimen name="list_item_future_vision_photo_hight">144dp</dimen>
