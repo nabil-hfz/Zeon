@@ -1,10 +1,15 @@
 package com.example.volley.zeon.MenuActivity;
 
+import android.app.TaskStackBuilder;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
+import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.FutureVision;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterFutureVision;
@@ -46,6 +51,9 @@ public class FutureVisionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_division);
 
+        //set Toolbar - add the up button to display .
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         List<FutureVision> futureVisionList = new ArrayList<FutureVision>();
 
         futureVisionList.add(new FutureVision(THE_FIRST_ARTICLE, R.drawable.future_vision));
@@ -64,4 +72,21 @@ public class FutureVisionActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
+    }
+    //TODO : Advanced ...
+    // This method for : MainActivity needs to know which album we want to display.
+    // On TrackActivity, we need to override onPrepareSupportNavigateUpTaskStack to edit the intent
+    // that will start the parent activity when pressing Up: specially to use when get Notification
+    // and get back to mainActivity instead of go back to phone .
+
+    @Override
+    public void onPrepareNavigateUpTaskStack(TaskStackBuilder builder) {
+        super.onPrepareNavigateUpTaskStack(builder);
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        NavUtils.navigateUpTo(this, intent);    }
 }

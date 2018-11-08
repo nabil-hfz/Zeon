@@ -6,12 +6,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_main"
-             android:checked="true"
-             android:icon="@drawable/ic_home"
+            android:checked="true"
+            android:icon="@drawable/ic_home"
             android:title="@string/main_news" />
         <item
             android:id="@+id/nav_division"
-             android:icon="@drawable/ic_developer"
+            android:icon="@drawable/ic_developer"
             android:title="@string/division" />
         <item
             android:id="@+id/nav_project"
@@ -21,23 +21,22 @@
             android:id="@+id/nav_vision"
             android:icon="@drawable/ic_future_vision"
             android:title="@string/future_vision" />
-
+        <item
+            android:checkableBehavior="single"
+            android:title="@string/more">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_contact_us"
+                        android:icon="@drawable/ic_call"
+                        android:title="@string/contact_us" />
+                    <item
+                        android:id="@+id/nav_about_us"
+                        android:icon="@drawable/ic_info"
+                        android:title="@string/about_us" />
+                </group>
+            </menu>
+        </item>
     </group>
 
-    <item
-        android:checkableBehavior="single"
-        android:title="@string/more">
-        <menu>
-
-            <item
-                android:id="@+id/nav_contact_us"
-                android:icon="@drawable/ic_call"
-                android:title="@string/contact_us" />
-            <item
-                android:id="@+id/nav_about_us"
-                android:icon="@drawable/ic_info"
-                android:title="@string/about_us" />
-
-        </menu>
-    </item>
 </menu>

@@ -1,13 +1,17 @@
 package com.example.volley.zeon.MenuActivity;
 
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.R;
 
 /**
@@ -30,7 +34,6 @@ public class aboutUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(TEAM_NAME);
@@ -48,4 +51,21 @@ public class aboutUsActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
+    }
+    //TODO : Advanced ...
+    // This method for : MainActivity needs to know which album we want to display.
+    // On TrackActivity, we need to override onPrepareSupportNavigateUpTaskStack to edit the intent
+    // that will start the parent activity when pressing Up: specially to use when get Notification
+    // and get back to mainActivity instead of go back to phone .
+
+    @Override
+    public void onPrepareNavigateUpTaskStack(TaskStackBuilder builder) {
+        super.onPrepareNavigateUpTaskStack(builder);
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        NavUtils.navigateUpTo(this, intent);    }
 }

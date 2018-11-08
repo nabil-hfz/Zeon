@@ -1,5 +1,7 @@
 package com.example.volley.zeon.Util;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -24,5 +26,10 @@ public class UtilTools {
         } else {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches() && matchFound;
         }
+    }
+    public final static Intent makeIntentOfEmail(String email) {
+        Intent emailIntent = new Intent(Intent.ACTION_VIEW);
+        emailIntent.setData(Uri.parse(email));
+        return emailIntent;
     }
 }
