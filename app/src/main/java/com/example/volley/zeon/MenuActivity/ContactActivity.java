@@ -222,7 +222,6 @@ public class ContactActivity extends AppCompatActivity {
                 textViewInvalidEmail.setVisibility(View.VISIBLE);
                 mEditTextEmail.getBackground().mutate().setColorFilter(getResources().getColor(R.color.invalid_Email_EditText), PorterDuff.Mode.SRC_ATOP);
                 //TODO : to make all context in the editTet with colors we need to do following :
-
                 //TODO : Setting the android:textCursorDrawable attribute to @null should result in the use of android:textColor as the cursor color.
                 //TODO : Attribute "textCursorDrawable" is available in API level 12 and higher
                 //TODO : and make shape in drawable folder .  // mEditTextEmail.setTextColor(getResources().getColor(R.color.invalid_Email_EditText));
