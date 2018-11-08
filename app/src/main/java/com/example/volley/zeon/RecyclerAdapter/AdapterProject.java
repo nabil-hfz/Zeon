@@ -8,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.volley.zeon.Model.Project;
 import com.example.volley.zeon.R;
-
 import java.util.List;
 
 /**

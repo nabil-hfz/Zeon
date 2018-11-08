@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,7 +19,6 @@ import com.example.volley.zeon.RecyclerItemClickListener.RecyclerItemClickListen
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Author of this class is Louay .

@@ -9,13 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.Project;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterProject;
 import com.example.volley.zeon.RecyclerItemClickListener.RecyclerItemClickListener;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.R;
 

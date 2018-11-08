@@ -8,12 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
-
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.FutureVision;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterFutureVision;
-
 import java.util.ArrayList;
 import java.util.List;
 

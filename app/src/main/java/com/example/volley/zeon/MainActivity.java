@@ -1,22 +1,15 @@
 package com.example.volley.zeon;
 
 import android.content.Intent;
-import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import com.example.volley.zeon.MenuActivity.ContactActivity;
 import com.example.volley.zeon.MenuActivity.DivisionActivity;
 import com.example.volley.zeon.MenuActivity.FutureVisionActivity;
