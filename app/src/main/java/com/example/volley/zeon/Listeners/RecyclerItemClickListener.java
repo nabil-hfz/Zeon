@@ -1,4 +1,4 @@
-package com.example.volley.zeon.RecyclerItemClickListener;
+package com.example.volley.zeon.Listeners;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

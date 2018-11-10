@@ -21,6 +21,7 @@
     <string name="your_message_feedback">Your message </string>
     <string name="feedback_response">Would you like an email response</string>
     <string name="feedback_Button">Send Feedback</string>
+    <string name="Greeting_client"> Welcome to Zeon Website ^__^ </string>
     <!--Other string resources also defined  … -->
 
 

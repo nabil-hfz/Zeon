@@ -9,12 +9,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 import com.example.volley.zeon.MenuActivity.ContactActivity;
 import com.example.volley.zeon.MenuActivity.DivisionActivity;
 import com.example.volley.zeon.MenuActivity.FutureVisionActivity;
 import com.example.volley.zeon.MenuActivity.ProjectActivity;
 import com.example.volley.zeon.MenuActivity.aboutUsActivity;
+import com.example.volley.zeon.Util.UtilTools;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,13 +29,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /**
      * TEAM EMAIL for send the  messages to it .
      */
-    private static final String T_EMAIL =  "https://www.facebook.com/profile.php?id=100003729378979";
+    public static final String T_EMAIL = "https://www.facebook.com/profile.php?id=100003729378979";
 
     private NavigationView mNavigationView;
 
     private DrawerLayout mDrawer;
 
-   // private final LinearLayout mZeonHeaderMainLinearLayout;
+    private ImageView mImageZeonHeaderMain;
 
 
     @Override
@@ -57,15 +60,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView = findViewById(R.id.nav_view);
 
         mNavigationView.setNavigationItemSelectedListener(this);
-        final LinearLayout app_layer = (LinearLayout) findViewById (R.id.zeon_header_main_LINEAR);
-      //app_layer.setClickable(true);
-    /*app_layer.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });*/
+
+        imageZeonListener();
     }
 
     @Override
@@ -123,20 +119,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
     }
-   /* private void imagneZeonListener ()
-    {
-        mZeonHeaderMainLinearLayout = (LinearLayout) findViewById(R.id.zeon_header_main);
-        mZeonHeaderMainLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = UtilTools.makeIntentOfEmail(T_EMAIL);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
-            }
-        });
 
-    }*/
+    private void imageZeonListener() {
+
+        View header = mNavigationView.getHeaderView(0);
+
+        mImageZeonHeaderMain = (ImageView) header.findViewById(R.id.zeon_header_main);
+
+        mImageZeonHeaderMain.setOnClickListener(new ZeonImageClickListener());
+
+        mDrawer.closeDrawer(GravityCompat.START);
+    }
+
+    public class ZeonImageClickListener implements View.OnClickListener {
+
+        public ZeonImageClickListener() {
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = UtilTools.makeIntentOfEmail(MainActivity.T_EMAIL);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                Toast.makeText(MainActivity.this, R.string.Greeting_client, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                mDrawer.closeDrawer(GravityCompat.START);
+            }
+
+        }
+    }
+
 }
     /*@Override
     public boolean onNavigationItemSelected(MenuItem item) {

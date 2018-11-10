@@ -15,7 +15,7 @@ import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
-import com.example.volley.zeon.RecyclerItemClickListener.RecyclerItemClickListener;
+import com.example.volley.zeon.Listeners.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
