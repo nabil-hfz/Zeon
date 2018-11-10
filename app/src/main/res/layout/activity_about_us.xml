@@ -28,7 +28,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/backdrop"
+                android:id="@+id/Zeon_team_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
@@ -72,6 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Info"
+                        android:layout_marginBottom="4dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <TextView
@@ -98,7 +99,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="condtion for foundtion"
+                        android:text="Condition For Foundation"
+                        android:layout_marginBottom="4dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <TextView
@@ -125,7 +127,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Contact us "
+                        android:text="Contact Us "
+                        android:layout_marginBottom="4dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <TextView

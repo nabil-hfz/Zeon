@@ -2,16 +2,27 @@ package com.example.volley.zeon.MenuActivity;
 
 import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.R;
+import com.example.volley.zeon.Util.UtilTools;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Author of this class is Louay .
@@ -28,33 +39,30 @@ public class aboutUsActivity extends AppCompatActivity {
 
     public static final String TEAM_NAME = "ZEON TEAM";
 
+    private TextView EmailContactUsPressed;
+    private ImageView zeonTeamImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_about_us);
 
-
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+
         collapsingToolbar.setTitle(TEAM_NAME);
 
-        TextView textViewContactUsPress = findViewById(R.id.contact_us_press);
+        openZeonImage();
 
-        textViewContactUsPress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent emailIntent = new Intent(Intent.ACTION_VIEW);
-                emailIntent.setData(Uri.parse("https://www.facebook.com/MahmoudTrro"));
-                if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(emailIntent);
-                }
-            }
-        });
+        textViewContactUsPressedEmail();
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
     }
+
     //TODO : Advanced ...
     // This method for : MainActivity needs to know which album we want to display.
     // On TrackActivity, we need to override onPrepareSupportNavigateUpTaskStack to edit the intent
@@ -66,5 +74,55 @@ public class aboutUsActivity extends AppCompatActivity {
         super.onPrepareNavigateUpTaskStack(builder);
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
-        NavUtils.navigateUpTo(this, intent);    }
+        NavUtils.navigateUpTo(this, intent);
+    }
+
+    private void openZeonImage() {
+
+        zeonTeamImage = (ImageView) findViewById(R.id.Zeon_team_image);
+
+        zeonTeamImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.all_team);
+
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+
+                File f = new File(Environment.getExternalStorageDirectory() + File.separator
+                        + "test.jpg");
+                try {
+                    f.createNewFile();
+                    FileOutputStream fo = new FileOutputStream(f);
+                    fo.write(bytes.toByteArray());
+                    fo.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Uri path = Uri.fromFile(f);
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(path, "image/*");
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void textViewContactUsPressedEmail() {
+
+        EmailContactUsPressed = (TextView) findViewById(R.id.contact_us_press);
+
+        EmailContactUsPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent emailIntent = UtilTools.makeIntentOfEmail("https://www.facebook.com/MahmoudTrro");
+                if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(emailIntent);
+                }
+            }
+        });
+    }
 }
