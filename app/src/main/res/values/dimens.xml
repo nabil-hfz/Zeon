@@ -5,6 +5,8 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="left_padding">16dp</dimen>
+    <dimen name="PaddingOrMargin_with_8">8dp</dimen>
+    <dimen name="PaddingOrMargin_with_16">16dp</dimen>
     <dimen name="Top_padding_summary">8dp</dimen>
     <dimen name="width_menu_item">48dp</dimen>
     <dimen name="hight_image_member">194dp</dimen>
@@ -14,6 +16,6 @@
     <dimen name="list_item_future_vision_photo_hight">144dp</dimen>
     <dimen name="detail_backdrop_height">256dp</dimen>
     <dimen name="card_margin">16dp</dimen>
-    <dimen name="card_member_radius">5dp</dimen>
+    <dimen name="card_member_radius">8dp</dimen>
 
 </resources>

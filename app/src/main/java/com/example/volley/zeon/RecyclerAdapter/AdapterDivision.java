@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
+import com.squareup.picasso.Picasso;
+
+
 import java.util.List;
 
 /**
@@ -24,20 +27,20 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
      */
     public static final String LOG_TAG = AdapterDivision.class.getSimpleName();
 
-    Context context;
+    Context mContext;
 
-    List<Division> divisionList;
+    List<Division> mDivisionList;
 
     /**
      * Create a new {@link AdapterDivision} object.
      *
-     * @param context      is the current context (i.e. Activity) that the adapter is being created in.
+     * @param mContext      is the current mContext (i.e. Activity) that the adapter is being created in.
      * @param divisionList is the list of {@link Division }s to be displayed.
      */
 
-    public AdapterDivision(Context context, List<Division> divisionList) {
-        this.context = context;
-        this.divisionList = divisionList;
+    public AdapterDivision(Context mContext, List<Division> divisionList) {
+        this.mContext = mContext;
+        this.mDivisionList = divisionList;
     }
 
     @Override
@@ -51,7 +54,7 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
     @Override
     public void onBindViewHolder(Holder holder, int position) {
 
-        Division currentDivision = divisionList.get(position);
+        Division currentDivision = mDivisionList.get(position);
 
 
         // Get the name member from the currentDivision object and set this text on
@@ -64,10 +67,11 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
         holder.mMajorityMember.setText(currentDivision.getMajorityMember());
 
-        // If an image is available, display the provided
-        holder.mImageMember.setImageResource(currentDivision.getImageMember());
-
-        // Make sure the view is visible
+        // If an image is available, display the provided   Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+        //"https://cdn.pixabay.com/user/2013/11/05/02-10-23-764_250x250.jpg"
+        Picasso.get().load(currentDivision.getImageMemberUrl()).fit().centerInside().into(holder.mImageMember);
+       // holder.mImageMember.setImageResource(currentDivision.getImageMemberUrl());
+         // Make sure the ImageView is visible
         holder.mImageMember.setVisibility(View.VISIBLE);
 
         // Get the summary info  Member from the currentDivision object and set this text on
@@ -78,7 +82,7 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
     @Override
     public int getItemCount() {
-        return divisionList.size();
+        return mDivisionList.size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {

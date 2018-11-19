@@ -39,7 +39,7 @@ public class Division {
     /**
      * Image resource ID for the member
      */
-    private int mImageMember;
+    private String mImageMember;
 
     /**
      * Info summary resource for the member
@@ -60,12 +60,12 @@ public class Division {
         this.mSummaryInfoMember = mSummaryInfoMembers;
     }
 
-    public Division(String mSummaryInfoMembers, int mImageMember) {
+    public Division(String mSummaryInfoMembers, String mImageMember) {
         this.mSummaryInfoMember = mSummaryInfoMembers;
         this.mImageMember = mImageMember;
     }
 
-    public Division(String mNameMember, String majorityMember, int mImageMember, String mSummaryInfoMember) {
+    public Division(String mNameMember, String majorityMember, String mImageMember, String mSummaryInfoMember) {
         this.mNameMember = mNameMember;
         this.mMajorityMember = majorityMember;
         this.mImageMember = mImageMember;
@@ -89,11 +89,11 @@ public class Division {
         this.mMajorityMember = majorityMember;
     }
 
-    public int getImageMember() {
+    public String getImageMemberUrl() {
         return mImageMember;
     }
 
-    public void setImageMember(int mImageMember) {
+    public void setImageMemberUrl(String mImageMember) {
         this.mImageMember = mImageMember;
     }
 
