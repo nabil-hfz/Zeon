@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.Project;
@@ -29,6 +30,10 @@ public class ProjectActivity extends AppCompatActivity {
      * Tag for the log messages
      */
     public static final String LOG_TAG = ProjectActivity.class.getSimpleName();
+    /**
+     * Progress Bar that for two sec
+     */
+    ProgressBar mSimpleProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,13 @@ public class ProjectActivity extends AppCompatActivity {
         //set Toolbar - add the up button to display .
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // First, hide loading indicator so error message will be visible
+        mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        mSimpleProgressBar.setVisibility(View.GONE);
+
         final List<Project> projectList = new ArrayList<Project>();
+
+
 
         for (int i = 0; i < 6; ++i)
             projectList.add(new Project("Zeon Application " + (i + 1),

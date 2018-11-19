@@ -1,6 +1,9 @@
 package com.example.volley.zeon.Util;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
@@ -36,6 +39,7 @@ public class UtilTools {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches() && matchFound;
         }
     }
+
     public final static Intent makeIntentOfEmail(String email) {
         Intent emailIntent = new Intent(Intent.ACTION_VIEW);
         emailIntent.setData(Uri.parse(email));
@@ -50,7 +54,7 @@ public class UtilTools {
 
         public static void nuke() {
             try {
-                TrustManager[] trustAllCerts = new TrustManager[] {
+                TrustManager[] trustAllCerts = new TrustManager[]{
                         new X509TrustManager() {
                             public X509Certificate[] getAcceptedIssuers() {
                                 X509Certificate[] myTrustedAnchors = new X509Certificate[0];
@@ -58,10 +62,12 @@ public class UtilTools {
                             }
 
                             @Override
-                            public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+                            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                            }
 
                             @Override
-                            public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+                            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                            }
                         }
                 };
 
@@ -78,5 +84,4 @@ public class UtilTools {
             }
         }
     }
-
 }

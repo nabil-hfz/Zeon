@@ -13,4 +13,6 @@
     <color name="invalid_Email_EditText">#D50000</color>
     <color name="valid_Email_Text">#558B2F</color>
     <color name="valid_Email_EditText">#64DD17</color>
+    <color name="progressBarColor">#CD295A</color>
+
 </resources>

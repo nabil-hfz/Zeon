@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,10 @@ public class ContactActivity extends AppCompatActivity {
      * Tag for the log messages
      */
     private static final String LOG_TAG = ContactActivity.class.getSimpleName();
+    /**
+     * Progress Bar that for two sec
+     */
+    ProgressBar mSimpleProgressBar;
 
     /**
      * TEAM EMAIL for send the  messages to it .
@@ -83,6 +88,10 @@ public class ContactActivity extends AppCompatActivity {
 
         //set Toolbar - add the up button to display .
          getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+         // First, hide loading indicator so error message will be visible
+         mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+         mSimpleProgressBar.setVisibility(View.GONE);
 
 
         // Listener To Button when pressed the button .

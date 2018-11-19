@@ -1,6 +1,7 @@
 package com.example.volley.zeon.RecyclerAdapter;
 
 import android.content.Context;
+import android.preference.TwoStatePreference;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,8 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
     Context mContext;
 
     List<Division> mDivisionList;
+
+    TextView mEmptyStateTextView ;
 
     /**
      * Create a new {@link AdapterDivision} object.
@@ -82,6 +85,7 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
     @Override
     public int getItemCount() {
+       // mEmptyStateTextView.setVisibility(mDivisionList.size() > 0 ? View.GONE : View.VISIBLE);
         return mDivisionList.size();
     }
 

@@ -22,6 +22,13 @@
     <string name="feedback_response">Would you like an email response</string>
     <string name="feedback_Button">Send Feedback</string>
     <string name="Greeting_client"> Welcome to Zeon Website ^__^ </string>
+
+    <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
+    <string name="no_internet_connection">No internet connection , Please check it .</string>
+    <!-- Text to display in the list when there are no Division [CHAR LIMIT=NONE] -->
+    <string name="no_Division_Members">No Division Members found.</string>
+    <!-- Text to display in the list when there are Error in fetching  Division's data [CHAR LIMIT=NONE] -->
+    <string name="no_Divisions_Data_Members">No Division Members found.</string>
     <!--Other string resources also defined  … -->
 
 

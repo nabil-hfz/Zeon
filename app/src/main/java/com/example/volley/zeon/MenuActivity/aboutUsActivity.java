@@ -12,6 +12,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,10 @@ public class aboutUsActivity extends AppCompatActivity {
      * Tag for the log messages
      */
     public static final String LOG_TAG = aboutUsActivity.class.getSimpleName();
+    /**
+     * Progress Bar that for two sec
+     */
+    ProgressBar mSimpleProgressBar;
 
     public static final String TEAM_NAME = "ZEON TEAM";
 
@@ -47,6 +52,11 @@ public class aboutUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_about_us);
+
+        // First, hide loading indicator so error message will be visible
+        mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+
+        mSimpleProgressBar.setVisibility(View.GONE);
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
 

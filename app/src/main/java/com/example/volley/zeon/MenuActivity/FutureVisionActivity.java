@@ -7,6 +7,8 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.FutureVision;
@@ -26,6 +28,10 @@ public class FutureVisionActivity extends AppCompatActivity {
      * Tag for the log messages
      */
     public static final String LOG_TAG = FutureVisionActivity.class.getSimpleName();
+    /**
+     * Progress Bar that for two sec
+     */
+    ProgressBar mSimpleProgressBar;
 
 
     /**
@@ -51,6 +57,9 @@ public class FutureVisionActivity extends AppCompatActivity {
 
         //set Toolbar - add the up button to display .
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // First, hide loading indicator so error message will be visible
+        mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        mSimpleProgressBar.setVisibility(View.GONE);
 
         List<FutureVision> futureVisionList = new ArrayList<FutureVision>();
 
