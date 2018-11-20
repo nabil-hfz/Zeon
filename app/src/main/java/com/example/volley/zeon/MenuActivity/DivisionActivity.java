@@ -249,6 +249,10 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
     }
     //TODO : Advanced ...
+
+
+
+
     // This method for : MainActivity needs to know which album we want to display.
     // On TrackActivity, we need to override onPrepareSupportNavigateUpTaskStack to edit the intent
     // that will start the parent activity when pressing Up: specially to use when get Notification
