@@ -5,12 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.volley.zeon.Model.FutureVision;
 import com.example.volley.zeon.R;
+
 import java.util.List;
 import java.util.concurrent.Future;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Author of this class is Nabil  in 2018/01/11
@@ -57,13 +59,8 @@ public class AdapterFutureVision extends RecyclerView.Adapter<AdapterFutureVisio
 
         // Get the  Short Article about Future Vision for team  from the currentFutureVision object and set this text on
         // the mShortArticleFutureVision TextView.
-        holder.mShortArticleFutureVision.setText(currentFutureVision.getShortArticleFutureVisiom());
-
-        // Get Future Vision image from the currentFutureVision object and set this image on
-        holder.mImageArticleFutureVision.setImageResource(currentFutureVision.getImageArticleFutureVision());
-
-        // Make sure the view is visible
-        holder.mImageArticleFutureVision.setVisibility(View.VISIBLE);
+        holder.mTitle.setText(currentFutureVision.getmTitle());
+        holder.mShortArticleFutureVision.setText(currentFutureVision.getShortArticleFutureVision());
 
     }
 
@@ -72,19 +69,38 @@ public class AdapterFutureVision extends RecyclerView.Adapter<AdapterFutureVisio
         return futureVisionList.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder {
+    class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private TextView mTitle;
 
         private TextView mShortArticleFutureVision;
 
-        private CircleImageView mImageArticleFutureVision;
+        private ImageView arrow_up, arrow_down;
 
-        public Holder(View view) {
+        Holder(View view) {
 
             super(view);
 
-            mShortArticleFutureVision = view.findViewById(R.id.summary_project_future_vision);
+            mTitle = view.findViewById(R.id.tv_title);
+            mShortArticleFutureVision = view.findViewById(R.id.description_text);
+            arrow_down = view.findViewById(R.id.show);
+            arrow_up = view.findViewById(R.id.hide);
+            arrow_up.setOnClickListener(this);
+            arrow_down.setOnClickListener(this);
+        }
 
-            mImageArticleFutureVision = view.findViewById(R.id.future_vision_image);
+        @Override
+        public void onClick(View view) {
+
+            if (mShortArticleFutureVision.getMaxLines() == 0) {
+                arrow_up.setVisibility(View.VISIBLE);
+                arrow_down.setVisibility(View.INVISIBLE);
+                mShortArticleFutureVision.setMaxLines(Integer.MAX_VALUE);
+            } else {
+                arrow_up.setVisibility(View.INVISIBLE);
+                arrow_down.setVisibility(View.VISIBLE);
+                mShortArticleFutureVision.setMaxLines(0);
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
+import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
@@ -51,21 +52,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
      * Tag for the log messages
      */
     public static final String LOG_TAG = DivisionActivity.class.getSimpleName();
-
-    public final static String TEAM_INFO_DIVISION = "https://mtmt2141.000webhostapp.com/getDepartments.php";
-
-    public final static String[] TEAM_INFO_IMAGE = {
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwx4VqD0s57NhTo1PwPjz4tA0jr6_W6bS3pP7yYkNrxXR0z7BCSA",
-            "http://ift.tt/1ri4IVk",
-            "https://static.twentytwowords.com/wp-content/uploads/Beautiful-Women-FB-5.jpg",
-            "https://static.twentytwowords.com/wp-content/uploads/You-Can-Achieve-These-20-Gorgeous-Makeup-Looks.jpg",
-            "https://www.carthageplus.net/wp-content/uploads/2018/08/100-most-beautiful-women-ever.jpg",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShH8_wf6-YxxA19JEppeOEJkVgm2NCXcn2YWEMJK89vPIS9haekA",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS54WkD_5_qVJhqr5kcWRoNJYnR-YaYBZp4mRhzEfLlbhsMqmGc",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSVm4ValOpFVfEbqwyNOJJfKKqAbQSJnvZe2DdbcNthTM6nyqn",
-            "http://www.scalsys.com/wallpapers/beautiful-wallpaper/beautiful-wallpaper_32407.jpg",
-    };
-
     /**
      * Progress Bar that for two sec
      */
@@ -102,7 +88,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         //set Toolbar - add the up button to display .
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         // Initialise it in application’s onCreate() function.
         // This is necessary step before starting using the library because
         // it needs context to register connectivity broadcast receiver.
@@ -119,9 +104,9 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         new UtilTools.handleSSLHandshake().nuke();
 
         // First, hide loading indicator so error message will be visible
-        mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        mSimpleProgressBar = findViewById(R.id.simpleProgressBar);
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
 
         mDivisionList = new ArrayList<Division>();
 
@@ -130,6 +115,13 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         mRecyclerView.setHasFixedSize(true);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // mRecyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.VERTICAL));
+
+        mDivisionAdapter = new AdapterDivision(DivisionActivity.this, mDivisionList);
+
+        mRecyclerView.setAdapter(mDivisionAdapter);
+
     }
 
     //Implement InternetConnectivityListener interface
@@ -152,7 +144,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
                 mRequestQueue = Volley.newRequestQueue(getApplicationContext());
 
-                parseJSON();
+                getJsonDivision();
 
             } else {
 
@@ -175,21 +167,24 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         }
     }
 
-    private void parseJSON() {
+    private void getJsonDivision() {
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, TEAM_INFO_DIVISION,
+        mDivisionList.clear();
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.DIVISION_URL,
                 (JSONObject) null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("result");
                     for (int i = 0; i < jsonArray.length(); i++) {
+
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String mNameDivision = jsonObject.getString("Name");
                         String mMajourity = jsonObject.getString("Text");
                         String mSummarry = jsonObject.getString("ID");
 
-                        mDivisionList.add(new Division(mNameDivision, mMajourity, TEAM_INFO_IMAGE[i],
+                        mDivisionList.add(new Division(mNameDivision, mMajourity, Constants.TEAM_INFO_IMAGE[i],
                                 mNameDivision + " is very nice creative boss " +
                                         ". he love his assistance in the Zeon team specially Nabil "));
                     }
@@ -201,9 +196,8 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                     if (mDivisionList != null && !mDivisionList.isEmpty()) {
 
                         // Update the adapter with new Inf
-                        mDivisionAdapter = new AdapterDivision(DivisionActivity.this, mDivisionList);
 
-                        mRecyclerView.setAdapter(mDivisionAdapter);
+                        mDivisionAdapter.notifyDataSetChanged();
 
                     } else {
                         mRecyclerView.setVisibility(View.GONE);
@@ -221,7 +215,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                 // Otherwise, display error
                 // First, hide loading indicator so error message will be visible
                 mSimpleProgressBar.setVisibility(View.GONE);
-                mEmptyStateTextView.setText(R.string.no_Divisions_Data_Members);
+                mEmptyStateTextView.setText(R.string.Error_Divisions_Data);
             }
         });
         // Set the tag on the request.
@@ -265,6 +259,4 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         intent.setClass(this, MainActivity.class);
         NavUtils.navigateUpTo(this, intent);
     }
-
-
 }

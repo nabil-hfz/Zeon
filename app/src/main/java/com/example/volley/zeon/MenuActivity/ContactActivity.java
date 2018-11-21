@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.Util.UtilTools;
@@ -87,16 +88,10 @@ public class ContactActivity extends AppCompatActivity {
         setContentView(R.layout.contact_us_activity);
 
         //set Toolbar - add the up button to display .
-         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-         // First, hide loading indicator so error message will be visible
-         mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
-         mSimpleProgressBar.setVisibility(View.GONE);
-
+         //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Listener To Button when pressed the button .
         ListenerToButton();
-
     }
 
     private void ListenerToButton() {
@@ -123,10 +118,10 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void checkEmailValidPermanently() {
-        textViewInvalidEmail = (TextView) findViewById(R.id.invalid_email);
+        textViewInvalidEmail = findViewById(R.id.invalid_email);
         textViewInvalidEmail.setVisibility(View.GONE);
 
-        mEditTextEmail = (AppCompatEditText) findViewById(R.id.EditTextEmail);
+        mEditTextEmail = findViewById(R.id.EditTextEmail);
         //     Log.v("ContactActivity", "\n addTextChangedListener \n");
         mEditTextEmail.addTextChangedListener(new TextWatcherForEmail());
 

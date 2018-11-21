@@ -7,13 +7,24 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.FutureVision;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterFutureVision;
+import com.example.volley.zeon.Util.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,56 +39,34 @@ public class FutureVisionActivity extends AppCompatActivity {
      * Tag for the log messages
      */
     public static final String LOG_TAG = FutureVisionActivity.class.getSimpleName();
-    /**
-     * Progress Bar that for two sec
-     */
-    ProgressBar mSimpleProgressBar;
 
+    private RecyclerView recyclerView;
+    private AdapterFutureVision adapter;
+    private List<FutureVision> futureVisionList = new ArrayList<>();
+    private RequestQueue requestQueue;
 
-    /**
-     * const Article  for displying in Future Vision UI .
-     */
-    public static final String THE_FIRST_ARTICLE = "The team plans to expand and reach high levels of competition and strong on wide ranges, including the Arab Mashreq and then the world, through organized effort and fine work.";
-
-
-    /**
-     * const Article  for displying in Future Vision UI .
-     */
-    public static final String THE_SECOND_ARTICLE = "To succeed in the labor market, making the effort to stand by the mountain of talented youth and able to develop itself with an unrivaled ambition is an essential goal of the team by helping them find the right opportunities and receive the appropriate expertise and competencies to promote a strong society through training events and courses.And development in various areas of work.";
-
-    /**
-     * const Article  for displying in Future Vision UI .
-     */
-    public static final String THE_THIRD_ARTICLE = "The scientific research team gives an important aspect of its future vision as it seeks to develop the tools and means of work and find all that facilitates the work of individuals working in the field of software to ensure the durability and effectiveness";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_division);
+        setContentView(R.layout.activity_vision);
 
         //set Toolbar - add the up button to display .
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // First, hide loading indicator so error message will be visible
-        mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
-        mSimpleProgressBar.setVisibility(View.GONE);
 
-        List<FutureVision> futureVisionList = new ArrayList<FutureVision>();
 
-        futureVisionList.add(new FutureVision(THE_FIRST_ARTICLE, R.drawable.future_vision));
-
-        futureVisionList.add(new FutureVision(THE_SECOND_ARTICLE, R.drawable.future_vision));
-
-        futureVisionList.add(new FutureVision(THE_THIRD_ARTICLE, R.drawable.future_vision));
-
-        AdapterFutureVision adapter = new AdapterFutureVision(this, futureVisionList);
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-
+        recyclerView = findViewById(R.id.vision_recycler);
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerView.setAdapter(adapter);
+        requestQueue = Volley.newRequestQueue(this);
+
+        if (futureVisionList.size() == 0)
+            Toast.makeText(this, "loading...", Toast.LENGTH_SHORT).show();
+
+        getJsonVision();
+
+
     }
     @Override
     public void onBackPressed() {
@@ -96,4 +85,49 @@ public class FutureVisionActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         NavUtils.navigateUpTo(this, intent);    }
+
+
+    //get data from Json URL to fill up our future vision recycler
+    public void getJsonVision() {
+        futureVisionList.clear();
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
+                Constants.FUTURE_VISION_URL, (JSONObject) null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray("result");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        if (i == 1) continue;
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        FutureVision futureVision = new FutureVision();
+                        if (object.has("Name"))
+                            futureVision.setmTitle(object.getString("Name"));
+                        if (object.has("Text"))
+                            futureVision.setShortArticleFutureVision(object.getString("Text"));
+                        futureVisionList.add(futureVision);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                adapter = new AdapterFutureVision(getApplicationContext(), futureVisionList);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                Toast.makeText(getApplicationContext(), "please check the connection", Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
 }

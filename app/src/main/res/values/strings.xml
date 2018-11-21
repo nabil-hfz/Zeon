@@ -28,7 +28,7 @@
     <!-- Text to display in the list when there are no Division [CHAR LIMIT=NONE] -->
     <string name="no_Division_Members">No Division Members found.</string>
     <!-- Text to display in the list when there are Error in fetching  Division's data [CHAR LIMIT=NONE] -->
-    <string name="no_Divisions_Data_Members">No Division Members found.</string>
+    <string name="Error_Divisions_Data">Sorry we get an error , Try again .</string>
     <!--Other string resources also defined  … -->
 
 

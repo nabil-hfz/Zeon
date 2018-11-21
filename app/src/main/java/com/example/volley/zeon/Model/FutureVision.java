@@ -20,32 +20,31 @@ public class FutureVision {
     /**
      * Short article resource about the Team orientations
      */
+    private String mTitle;
+
     private String mShortArticleFutureVision;
 
-    /**
-     * Meaningful Photo resource ID about the Team orientations
-     */
-    private int mImageArticleFutureVision;
-
-    public FutureVision(String mShortArticleFutureVisiom, int mImageArticleFutureVision) {
-
-        this.mShortArticleFutureVision = mShortArticleFutureVisiom;
-        this.mImageArticleFutureVision = mImageArticleFutureVision;
+    public FutureVision() {
     }
 
-    public String getShortArticleFutureVisiom() {
+    public FutureVision(String mTitle, String mShortArticleFutureVision) {
+        this.mTitle = mTitle;
+        this.mShortArticleFutureVision = mShortArticleFutureVision;
+    }
+
+    public String getmTitle() {
+        return mTitle;
+    }
+
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
+    }
+
+    public String getShortArticleFutureVision() {
         return mShortArticleFutureVision;
     }
 
-    public void setShortArticleFutureVision(String mShortArticleFutureVisiom) {
-        this.mShortArticleFutureVision = mShortArticleFutureVisiom;
-    }
-
-    public int getImageArticleFutureVision() {
-        return mImageArticleFutureVision;
-    }
-
-    public void setImageArticleFutureVisiom(int mImageArticleFutureVision) {
-        this.mImageArticleFutureVision = mImageArticleFutureVision;
+    public void setShortArticleFutureVision(String mShortArticleFutureVision) {
+        this.mShortArticleFutureVision = mShortArticleFutureVision;
     }
 }
