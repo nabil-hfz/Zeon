@@ -3,7 +3,8 @@
     package="com.example.volley.zeon">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,53 +16,74 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-             android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MenuActivity.DivisionActivity"
-            android:label="@string/division"
             android:autoRemoveFromRecents="true"
-            android:taskAffinity=".Track"
             android:configChanges="orientation|screenSize"
-            android:parentActivityName=".MainActivity"></activity>
+            android:label="@string/division"
+            android:parentActivityName=".MainActivity"
+            android:taskAffinity=".Track">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.volley.zeon.MainActivity" />
+        </activity>
 
         <activity
             android:name=".MenuActivity.ProjectActivity"
-            android:label="@string/projects"
             android:autoRemoveFromRecents="true"
-            android:taskAffinity=".Track"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/projects"
+            android:parentActivityName=".MainActivity"
+            android:taskAffinity=".Track">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.volley.zeon.MainActivity" />
+        </activity>
 
         <activity
             android:name=".MenuActivity.FutureVisionActivity"
-            android:label="@string/future_vision"
-            android:taskAffinity=".Track"
             android:autoRemoveFromRecents="true"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/future_vision"
+            android:parentActivityName=".MainActivity"
+            android:taskAffinity=".Track">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.volley.zeon.MainActivity" />
+        </activity>
 
         <activity
             android:name=".MenuActivity.ContactActivity"
-            android:label="@string/contact_us"
-            android:taskAffinity=".Track"
             android:autoRemoveFromRecents="true"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/contact_us"
+            android:parentActivityName=".MainActivity"
+            android:taskAffinity=".Track">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.volley.zeon.MainActivity" />
+        </activity>
 
         <activity
             android:name=".MenuActivity.aboutUsActivity"
-            android:label="@string/about_us"
-            android:taskAffinity=".Track"
             android:autoRemoveFromRecents="true"
-            android:parentActivityName=".MainActivity">
+            android:label="@string/about_us"
+            android:parentActivityName=".MainActivity"
+            android:taskAffinity=".Track">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.volley.zeon.MainActivity" />
         </activity>
-
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>

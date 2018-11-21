@@ -85,9 +85,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_division);
 
-        //set Toolbar - add the up button to display .
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         // Initialise it in application’s onCreate() function.
         // This is necessary step before starting using the library because
         // it needs context to register connectivity broadcast receiver.

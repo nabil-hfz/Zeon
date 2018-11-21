@@ -81,14 +81,10 @@ public class ContactActivity extends AppCompatActivity {
      */
     private AppCompatEditText mEditTextEmail;
 
-
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_us_activity);
-
-        //set Toolbar - add the up button to display .
-         //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Listener To Button when pressed the button .
         ListenerToButton();

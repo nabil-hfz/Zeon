@@ -20,6 +20,7 @@ import com.example.volley.zeon.Model.FutureVision;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterFutureVision;
 import com.example.volley.zeon.Util.Constants;
+import com.example.volley.zeon.Util.UtilTools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,8 +52,8 @@ public class FutureVisionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vision);
 
-        //set Toolbar - add the up button to display .
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //This for Enabling https connections with SSL HTTp ...
+        new UtilTools.handleSSLHandshake().nuke();
 
 
         recyclerView = findViewById(R.id.vision_recycler);

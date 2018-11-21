@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.example.volley.zeon.MenuActivity.ContactActivity;
 import com.example.volley.zeon.MenuActivity.DivisionActivity;
 import com.example.volley.zeon.MenuActivity.FutureVisionActivity;
@@ -44,11 +45,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         View header = mNavigationView.getHeaderView(0);
 
-        mImageZeonHeaderMain = (ImageView) header.findViewById(R.id.zeon_header_main);
+        mImageZeonHeaderMain = header.findViewById(R.id.zeon_header_main);
 
         mImageZeonHeaderMain.setOnClickListener(new ZeonImageClickListener());
 
@@ -144,55 +145,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 mDrawer.closeDrawer(GravityCompat.START);
             }
-
         }
     }
-
 }
-    /*@Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-       // Instead of all setChecked :: mNavigationView.setCheckedItem(item.getItemId());
-        switch (item.getItemId()) {
-            case (R.id.nav_main):
-                item.setChecked(true);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
-            case (R.id.nav_division):
-                item.setChecked(true);
-                Intent divisionIntent = new Intent(MainActivity.this, DivisionActivity.class);
-                startActivity(divisionIntent);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
-            case (R.id.nav_project):
-                item.setChecked(true);
-                drawer.closeDrawer(GravityCompat.START, false);
-                Intent projectsIntent = new Intent(MainActivity.this, ProjectActivity.class);
-                startActivity(projectsIntent);
-                drawer.closeDrawer(Gravity.LEFT, false);
-                return true;
-            case (R.id.nav_vision):
-                item.setChecked(true);
-                Intent visionIntent = new Intent(MainActivity.this, FutureVisionActivity.class);
-                startActivity(visionIntent);
-                drawer.closeDrawers();
-                return true;
-            case (R.id.nav_contact_us):
-                item.setChecked(true);
-                Intent contactUsIntent = new Intent(MainActivity.this, ContactActivity.class);
-                startActivity(contactUsIntent);
-                drawer.closeDrawers();
-                return true;
-            case (R.id.nav_about_us):
-                item.setChecked(true);
-                Intent aboutUsIntent = new Intent(MainActivity.this, aboutUsActivity.class);
-                startActivity(aboutUsIntent);
-                drawer.closeDrawers();
-                return true;
-            default:
-                item.setChecked(true);
-                drawer.closeDrawers();
-                return false;
-        }
-    }*/

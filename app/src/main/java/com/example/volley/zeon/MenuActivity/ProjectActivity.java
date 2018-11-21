@@ -10,11 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.volley.zeon.Listeners.RecyclerItemClickListener;
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.Model.Project;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterProject;
-import com.example.volley.zeon.Listeners.RecyclerItemClickListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +42,8 @@ public class ProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_division);
 
-        //set Toolbar - add the up button to display .
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         // First, hide loading indicator so error message will be visible
-        mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        mSimpleProgressBar = findViewById(R.id.simpleProgressBar);
         mSimpleProgressBar.setVisibility(View.GONE);
 
         final List<Project> projectList = new ArrayList<Project>();
