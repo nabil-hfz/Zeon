@@ -11,11 +11,24 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.volley.zeon.Listeners.RecyclerItemClickListener;
 import com.example.volley.zeon.MainActivity;
+import com.example.volley.zeon.Model.MainNews;
 import com.example.volley.zeon.Model.Project;
 import com.example.volley.zeon.R;
+import com.example.volley.zeon.RecyclerAdapter.AdapterMainNews;
 import com.example.volley.zeon.RecyclerAdapter.AdapterProject;
+import com.example.volley.zeon.Util.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,34 +48,34 @@ public class ProjectActivity extends AppCompatActivity {
     /**
      * Progress Bar that for two sec
      */
-    ProgressBar mSimpleProgressBar;
+    //ProgressBar mSimpleProgressBar;
+
+    private List<Project> projectList;
+    private AdapterProject adapter;
+    private RecyclerView recyclerView;
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_division);
+        setContentView(R.layout.activity_project);
 
         // First, hide loading indicator so error message will be visible
-        mSimpleProgressBar = findViewById(R.id.simpleProgressBar);
-        mSimpleProgressBar.setVisibility(View.GONE);
+       // mSimpleProgressBar = findViewById(R.id.simpleProgressBar);
+       // mSimpleProgressBar.setVisibility(View.GONE);
 
-        final List<Project> projectList = new ArrayList<Project>();
+        projectList = new ArrayList<>();
+
+        requestQueue= Volley.newRequestQueue(this);
 
 
-
-        for (int i = 0; i < 6; ++i)
-            projectList.add(new Project("Zeon Application " + (i + 1),
-                    " Project numbers is :  " + i, R.drawable.project_photo));
-
-        AdapterProject adapter = new AdapterProject(this, projectList);
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerView.setAdapter(adapter);
+        getJsonProject();
 
         // make a listener for all elements recycle View .
 
@@ -81,6 +94,61 @@ public class ProjectActivity extends AppCompatActivity {
                 })
         );
     }
+
+
+    private void getJsonProject() {
+        projectList.clear();
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Constants.MAIN_NEWS_URL,
+                (String) null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONArray jsonArray=response.getJSONArray("result");
+
+                    int id=-1;
+                    String name=null;
+                    String brief=null;
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+
+                        if(jsonObject.has("ID"))
+                            id=jsonObject.getInt("ID");
+
+                        if(jsonObject.has("Name"))
+                            name=jsonObject.getString("Name");
+
+                        if(jsonObject.has("Brief"))
+                            brief=jsonObject.getString("Brief");
+
+                        Project project=new Project(id,name,brief);
+
+                        projectList.add(project);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                adapter=new AdapterProject(getApplicationContext(),projectList);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+
+
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

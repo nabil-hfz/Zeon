@@ -21,48 +21,40 @@ public class Project {
      */
     public static final String LOG_TAG = Project.class.getSimpleName();
 
-    /**
-     * Title (name) of project resource for the Project
-     */
-    private String mTitleProject;
+    private int id;
+    private String projectName;
+    private String projectBrief;
 
-    /**
-     * small Info resource for the Project
-     */
-    private String mShortInfoProject;
-
-    /**
-     * Image  resource ID for the Project
-     */
-    private int mImageProject;
-
-    public Project(String mTitleProject, String mShortInfoProject, int mImageProject) {
-        this.mTitleProject = mTitleProject;
-        this.mShortInfoProject = mShortInfoProject;
-        this.mImageProject = mImageProject;
+    public Project() {
     }
 
-    public String getmTitleProject() {
-        return mTitleProject;
+    public Project(int id, String projectName, String projectBrief) {
+        this.id = id;
+        this.projectName = projectName;
+        this.projectBrief = projectBrief;
     }
 
-    public void setmTitleProject(String mTitleProject) {
-        this.mTitleProject = mTitleProject;
+    public int getId() {
+        return id;
     }
 
-    public String getShortInfo() {
-        return mShortInfoProject;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setShortInfo(String mShortInfo) {
-        this.mShortInfoProject = mShortInfo;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public int getImageProject() {
-        return mImageProject;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
-    public void setImageProject(int mImageProject) {
-        this.mImageProject = mImageProject;
+    public String getProjectBrief() {
+        return projectBrief;
+    }
+
+    public void setProjectBrief(String projectBrief) {
+        this.projectBrief = projectBrief;
     }
 }
