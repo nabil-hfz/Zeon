@@ -52,13 +52,14 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> 
         // Get the  short info about project from the currentProject object and set this text on
         // the ShortInfo TextView.
 
-        holder.mShortInfo.setText(currentProject.getShortInfo());
+        holder.mTitleProject.setText(currentProject.getProjectName());
 
         // Get project image from the currentProject object and set this image on
-        holder.mImageProject.setImageResource(currentProject.getImageProject());
+       // holder.mImageProject.setImageResource(currentProject.getImageProject());
 
+        holder.mShortInfo.setText(currentProject.getProjectBrief());
         // Make sure the view is visible
-        holder.mImageProject.setVisibility(View.VISIBLE);
+       // holder.mImageProject.setVisibility(View.VISIBLE);
 
     }
 
@@ -67,23 +68,23 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.Holder> 
         return projectList.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder {
+     class Holder extends RecyclerView.ViewHolder {
 
-        private TextView mTitleProject;
+        TextView mTitleProject;
 
-        private TextView mShortInfo;
+         TextView mShortInfo;
 
-        private ImageView mImageProject;
+        //private ImageView mImageProject;
 
-        private Button mSeeMoreProject;
+         Button mSeeMoreProject;
 
-        public Holder(View view) {
+        Holder(View view) {
 
             super(view);
 
             mTitleProject = view.findViewById(R.id.name_project);
 
-            mImageProject = view.findViewById(R.id.project_photo);
+            //mImageProject = view.findViewById(R.id.project_photo);
 
             mShortInfo = view.findViewById(R.id.summary_project);
 

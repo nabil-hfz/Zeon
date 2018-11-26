@@ -18,14 +18,15 @@
 
         <TextView
             android:id="@+id/name_project"
-            android:layout_width="match_parent"
-            android:layout_height="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center|bottom"
-            android:paddingLeft="@dimen/left_padding"
-            android:text="Zoen Application "
             android:textColor="@color/nameMember"
-            android:textSize="20dp"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+             />
 
         <ImageView
             android:id="@+id/project_photo"
@@ -43,26 +44,28 @@
             android:layout_marginTop="24dp"
             android:ellipsize="end"
             android:gravity="start|bottom"
-            android:maxLines="2"
             android:paddingLeft="@dimen/left_padding"
             android:paddingRight="4dp"
             android:text="Zeon Application was created by Zeon Team and it's an amazing app "
             android:textColor="@color/summaryMember"
-            android:textSize="18dp"
-            app:layout_constraintTop_toBottomOf="@id/project_photo" />
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/project_photo"
+            android:paddingStart="@dimen/left_padding"
+            android:paddingEnd="4dp"
+            />
+        <!--android:maxLines="2"-->
 
         <Button
             android:id="@+id/button_see_more"
-            android:layout_width="@dimen/width_Button_seeMore"
-            android:layout_height="@dimen/height_Button_seeMore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:background="@color/card_background"
             android:text="SEE More"
-            android:textAllCaps="true"
             android:textColor="@color/button_see_more"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="@id/summary_project"
-            app:layout_constraintRight_toRightOf="@id/summary_project"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/summary_project"
+            app:layout_constraintStart_toEndOf="@id/summary_project"
             app:layout_constraintTop_toBottomOf="@id/summary_project" />
     </LinearLayout>
 

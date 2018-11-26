@@ -183,13 +183,11 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        int id=jsonObject.getInt("ID");
                         String mNameDivision = jsonObject.getString("Name");
-                        String mMajourity = jsonObject.getString("Text");
-                        String mSummarry = jsonObject.getString("ID");
+                        String mMajourity = jsonObject.getString("Department");
 
-                        mDivisionList.add(new Division(mNameDivision, mMajourity, Constants.TEAM_INFO_IMAGE[i],
-                                mNameDivision + " is very nice creative boss " +
-                                        ". he love his assistance in the Zeon team specially Nabil "));
+                        mDivisionList.add(new Division(id,mNameDivision, mMajourity, Constants.TEAM_INFO_IMAGE[i]));
                     }
 
                     mSimpleProgressBar.setVisibility(View.GONE);
