@@ -78,7 +78,8 @@
             android:autoRemoveFromRecents="true"
             android:label="@string/about_us"
             android:parentActivityName=".MainActivity"
-            android:taskAffinity=".Track">
+            android:taskAffinity=".Track"
+            android:theme="@style/AboutUsTheme">
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -2,28 +2,25 @@ package com.example.volley.zeon.MenuActivity;
 
 import android.app.TaskStackBuilder;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.R;
+import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * Author of this class is Louay .
@@ -45,18 +42,30 @@ public class aboutUsActivity extends AppCompatActivity {
     public static final String TEAM_NAME = "ZEON TEAM";
 
     private TextView EmailContactUsPressed;
-    private ImageView zeonTeamImage;
+
+    private ImageView mZeonTeamImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_about_us);
 
+        final Toolbar toolbar = findViewById(R.id.toolbar_aboutUs);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // First, hide loading indicator so error message will be visible
-        mSimpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        mSimpleProgressBar = findViewById(R.id.simpleProgressBar);
 
         mSimpleProgressBar.setVisibility(View.GONE);
+
+        mZeonTeamImage = findViewById(R.id.Zeon_team_image);
+
+        // Picasso.get().load(Constants.ALL_TEAM_PHOTO_URL).fit().centerCrop().into(mZeonTeamImage);
+
+        Glide.with(this).load(Uri.parse(Constants.ALL_TEAM_PHOTO_URL)).apply(RequestOptions.centerCropTransform()).into(mZeonTeamImage);
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
 
@@ -66,6 +75,7 @@ public class aboutUsActivity extends AppCompatActivity {
 
         textViewContactUsPressedEmail();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -89,41 +99,27 @@ public class aboutUsActivity extends AppCompatActivity {
 
     private void openZeonImage() {
 
-        zeonTeamImage = (ImageView) findViewById(R.id.Zeon_team_image);
-
-        zeonTeamImage.setOnClickListener(new View.OnClickListener() {
+        mZeonTeamImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.all_team);
 
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
-
-                File f = new File(Environment.getExternalStorageDirectory() + File.separator
-                        + "test.jpg");
-                try {
-                    f.createNewFile();
-                    FileOutputStream fo = new FileOutputStream(f);
-                    fo.write(bytes.toByteArray());
-                    fo.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Uri path = Uri.fromFile(f);
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setDataAndType(path, "image/*");
-                startActivity(intent);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse(Constants.ALL_TEAM_PHOTO_URL), "image/*");
+                startActivity(Intent.createChooser(intent, "Open [App] images"));
             }
         });
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        return true;
+    }
     private void textViewContactUsPressedEmail() {
 
-        EmailContactUsPressed = (TextView) findViewById(R.id.contact_us_press);
+        EmailContactUsPressed = findViewById(R.id.contact_us_press);
 
         EmailContactUsPressed.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -56,7 +56,6 @@ public class FutureVisionActivity extends AppCompatActivity {
         //This for Enabling https connections with SSL HTTp ...
         new UtilTools.handleSSLHandshake().nuke();
 
-
         recyclerView = findViewById(R.id.vision_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
