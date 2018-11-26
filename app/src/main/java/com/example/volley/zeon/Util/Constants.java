@@ -7,6 +7,9 @@ public class Constants {
     //division url
     public static final String DIVISION_URL = "https://mtmt2141.000webhostapp.com/getDepartments.php";
 
+    //mainNews url
+    public static final String MAIN_NEWS_URL="https://mtmt2141.000webhostapp.com/getNews.php";
+
     /**
      * TEAM EMAIL for send the  messages to it .
      */

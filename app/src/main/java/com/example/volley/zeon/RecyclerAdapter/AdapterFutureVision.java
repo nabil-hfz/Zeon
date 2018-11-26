@@ -75,7 +75,7 @@ public class AdapterFutureVision extends RecyclerView.Adapter<AdapterFutureVisio
 
         private TextView mShortArticleFutureVision;
 
-        private ImageView arrow_up, arrow_down;
+        private ImageView arrow;
 
         Holder(View view) {
 
@@ -83,22 +83,19 @@ public class AdapterFutureVision extends RecyclerView.Adapter<AdapterFutureVisio
 
             mTitle = view.findViewById(R.id.tv_title);
             mShortArticleFutureVision = view.findViewById(R.id.description_text);
-            arrow_down = view.findViewById(R.id.show);
-            arrow_up = view.findViewById(R.id.hide);
-            arrow_up.setOnClickListener(this);
-            arrow_down.setOnClickListener(this);
+            arrow = view.findViewById(R.id.arrow);
+            arrow.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
 
             if (mShortArticleFutureVision.getMaxLines() == 0) {
-                arrow_up.setVisibility(View.VISIBLE);
-                arrow_down.setVisibility(View.INVISIBLE);
+                arrow.setBackgroundResource(R.drawable.arrow_up);
                 mShortArticleFutureVision.setMaxLines(Integer.MAX_VALUE);
             } else {
-                arrow_up.setVisibility(View.INVISIBLE);
-                arrow_down.setVisibility(View.VISIBLE);
+                arrow.setBackgroundResource(R.drawable.arrow_down);
                 mShortArticleFutureVision.setMaxLines(0);
             }
         }

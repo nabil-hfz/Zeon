@@ -8,9 +8,12 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,7 +108,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mEmptyStateTextView = findViewById(R.id.empty_view);
 
-        mDivisionList = new ArrayList<Division>();
+        mDivisionList = new ArrayList<>();
 
         mRecyclerView = findViewById(R.id.recycler_view);
 
@@ -113,11 +116,14 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.VERTICAL));
+
         // mRecyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.VERTICAL));
 
         mDivisionAdapter = new AdapterDivision(DivisionActivity.this, mDivisionList);
 
         mRecyclerView.setAdapter(mDivisionAdapter);
+
 
     }
 

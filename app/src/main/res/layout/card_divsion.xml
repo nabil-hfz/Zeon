@@ -1,75 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-/** * Author of this Layout is Nabil in 2018/04/11  */  -->
-
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Author of this Layout is Nabil in 2018/04/11
+ */
+ -->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/PaddingOrMargin_with_8"
-    android:background="@color/card_background"
-    android:elevation="8dp"
-    app:cardCornerRadius="@dimen/card_member_radius">
+    android:layout_height="100dp"
+    android:id="@+id/division_card"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/PaddingOrMargin_with_16">
+        android:layout_height="match_parent"
+        android:foreground="@drawable/card_shadow"
+        android:elevation="1dp"
+        card_view:cardCornerRadius="@dimen/card_member_radius"
+        tools:targetApi="lollipop">
 
-        <TextView
-            android:id="@+id/name_members"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="34dp"
-            android:gravity="start|bottom"
-            android:paddingLeft="@dimen/left_padding"
-            android:text="Mahmmod Trrooooooo "
-            android:textColor="@color/nameMember"
-            android:textSize="20dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/majority_member"
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:gravity="top|start"
-            android:paddingLeft="@dimen/left_padding"
-            android:text="Web stack developer and Xeon's boss "
-            android:textColor="@color/majorityMember"
-            android:textSize="14dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/member_photo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="0.25dp"
+                android:src="@drawable/zeon_boss"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/member_photo"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/hight_image_member"
-            android:layout_marginTop="@dimen/left_padding"
-            android:clickable="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/zeon_boss" />
+            <TextView
+                android:id="@+id/name_members"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Mahmmod Trrooooooo "
+                android:textColor="@color/nameMember"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/member_photo"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/summary_member"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/Top_padding_summary"
-            android:ellipsize="end"
-            android:gravity="start|bottom"
-            android:maxLines="2"
-            android:paddingLeft="@dimen/left_padding"
-            android:paddingRight="4dp"
-            android:text="Mahmmod is very nice creative boss . he love his assistance in the Zeon team speacially nabel  "
-            android:textColor="@color/summaryMember"
-            android:textSize="16dp" />
+            <TextView
+                android:id="@+id/majority_member"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Web stack developer"
+                android:textColor="@color/majorityMember"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/member_photo"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp" />
 
-        <Button
-            android:id="@+id/button_see_more"
-            android:layout_width="@dimen/width_Button_seeMore"
-            android:layout_height="@dimen/height_Button_seeMore"
-            android:layout_marginTop="18dp"
-            android:text="SEE More"
-            android:textAllCaps="true"
-            android:textColor="@color/button_see_more"
-            android:textSize="16dp" />
 
-    </LinearLayout>
 
-</android.support.v7.widget.CardView>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

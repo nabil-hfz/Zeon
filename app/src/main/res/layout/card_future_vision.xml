@@ -15,22 +15,24 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
+        android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@color/summaryMember"
         android:textSize="15sp"
-        android:textAppearance="?android:textAppearanceSmall"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/arrow"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/description_text"
@@ -38,23 +40,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:maxLines="0"
+        android:textColor="#4b4b4b"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <ImageButton
-        android:id="@+id/show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/arrow"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignEnd="@+id/tv_title"
         android:layout_alignRight="@+id/tv_title"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/arrow_down"
-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tv_title"
         tools:ignore="ContentDescription" />
 
     <!--<View
@@ -66,19 +70,19 @@
         android:layout_toLeftOf="@+id/show"
         android:background="#000" />-->
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/hide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignEnd="@+id/tv_title"
         android:layout_alignRight="@+id/tv_title"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/arrow_up"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintLeft_toRightOf="@+id/tv_title"
+        tools:ignore="ContentDescription" />-->
 
 </android.support.constraint.ConstraintLayout>

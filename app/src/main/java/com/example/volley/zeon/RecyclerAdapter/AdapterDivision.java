@@ -6,9 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.volley.zeon.Listeners.RecyclerItemClickListener;
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
 import com.squareup.picasso.Picasso;
@@ -21,7 +25,7 @@ import java.util.List;
  */
 
 
-public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder> {
+public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder>{
 
     /**
      * Tag for the log messages
@@ -77,11 +81,9 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
          // Make sure the ImageView is visible
         holder.mImageMember.setVisibility(View.VISIBLE);
 
-        // Get the summary info  Member from the currentDivision object and set this text on
-        // the summaryinfo TextView.
-
-        holder.mInfoSummaryMember.setText(currentDivision.getSummaryInfoMember());
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -89,7 +91,12 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         return mDivisionList.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder {
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView mNameMember;
 
@@ -97,11 +104,8 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
         private ImageView mImageMember;
 
-        private TextView mInfoSummaryMember;
 
-        private Button mSeeMoreProject;
-
-        public Holder(View view) {
+        Holder(View view) {
             super(view);
 
             mNameMember = view.findViewById(R.id.name_members);
@@ -109,10 +113,26 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
             mMajorityMember = view.findViewById(R.id.majority_member);
 
             mImageMember = view.findViewById(R.id.member_photo);
+            mImageMember.setOnClickListener(this);
 
-            mInfoSummaryMember = view.findViewById(R.id.summary_member);
+            view.setOnClickListener(this);
+        }
 
-            mSeeMoreProject = view.findViewById(R.id.button_see_more);
+        @Override
+        public void onClick(View view) {
+
+            switch (view.getId())
+            {
+            case R.id.member_photo:
+                Toast.makeText(mContext,mNameMember.getText().toString(),Toast.LENGTH_SHORT).show();
+            break;
+            case R.id.division_card:
+                Toast.makeText(mContext,mMajorityMember.getText().toString(),Toast.LENGTH_SHORT).show();
+                break;
+                default:
+                    break;
+
+            }
         }
     }
 }

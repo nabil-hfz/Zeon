@@ -45,6 +45,7 @@ public class FutureVisionActivity extends AppCompatActivity {
     private AdapterFutureVision adapter;
     private List<FutureVision> futureVisionList = new ArrayList<>();
     private RequestQueue requestQueue;
+    private boolean check=false;
 
 
     @Override
@@ -65,6 +66,7 @@ public class FutureVisionActivity extends AppCompatActivity {
         if (futureVisionList.size() == 0)
             Toast.makeText(this, "loading...", Toast.LENGTH_SHORT).show();
 
+        //while (!check)
         getJsonVision();
 
 
@@ -85,7 +87,8 @@ public class FutureVisionActivity extends AppCompatActivity {
         super.onPrepareNavigateUpTaskStack(builder);
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
-        NavUtils.navigateUpTo(this, intent);    }
+        NavUtils.navigateUpTo(this, intent);
+        }
 
 
     //get data from Json URL to fill up our future vision recycler
@@ -114,6 +117,7 @@ public class FutureVisionActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                check=true;
                 adapter = new AdapterFutureVision(getApplicationContext(), futureVisionList);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -125,6 +129,7 @@ public class FutureVisionActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError volleyError) {
 
                 Toast.makeText(getApplicationContext(), "please check the connection", Toast.LENGTH_SHORT).show();
+
             }
         });
         requestQueue.add(jsonObjectRequest);
