@@ -10,6 +10,8 @@ public class Constants {
     //mainNews url
     public static final String MAIN_NEWS_URL="https://mtmt2141.000webhostapp.com/getNews.php";
 
+    //  ALL_TEAM_PHOTO_URL url
+    public static final String ALL_TEAM_PHOTO_URL = "https://images.pexels.com/photos/289225/pexels-photo-289225.jpeg?auto=compress&cs=tinysrgb&h=350";
     /**
      * TEAM EMAIL for send the  messages to it .
      */
