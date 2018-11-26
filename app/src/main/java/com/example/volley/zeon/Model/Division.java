@@ -27,6 +27,11 @@ public class Division {
      */
     public static final String LOG_TAG = Division.class.getSimpleName();
     /**
+     *  member id
+     */
+    private int id;
+
+    /**
      * name member resource for the member
      */
     private String mNameMember;
@@ -41,36 +46,32 @@ public class Division {
      */
     private String mImageMember;
 
-    /**
-     * Info summary resource for the member
-     */
-    private String mSummaryInfoMember;
 
-    /**
-     * Info complete resource for the member
-     */
-    private String mCompleteInfoMember;
 
     /**
      * Constant value that represents no state was provided for this member
      */
     private static final int NO_INFO_PROVIDED = -1;
 
-    public Division(String mSummaryInfoMembers) {
-        this.mSummaryInfoMember = mSummaryInfoMembers;
+
+    public Division() {
+
     }
 
-    public Division(String mSummaryInfoMembers, String mImageMember) {
-        this.mSummaryInfoMember = mSummaryInfoMembers;
-        this.mImageMember = mImageMember;
-    }
-
-    public Division(String mNameMember, String majorityMember, String mImageMember, String mSummaryInfoMember) {
+    public Division(int id,String mNameMember, String majorityMember, String mImageMember) {
+        this.id=id;
         this.mNameMember = mNameMember;
         this.mMajorityMember = majorityMember;
         this.mImageMember = mImageMember;
-        this.mSummaryInfoMember = mSummaryInfoMember;
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNameMember() {
@@ -97,19 +98,8 @@ public class Division {
         this.mImageMember = mImageMember;
     }
 
-    public String getSummaryInfoMember() {
-        return mSummaryInfoMember;
-    }
 
-    public void setSummaryInfoMember(String mSummaryInfoMember) {
-        this.mSummaryInfoMember = mSummaryInfoMember;
-    }
 
-    public String getCompleteInfoMember() {
-        return mCompleteInfoMember;
-    }
 
-    public void setCompleteInfoMember(String mCompleteInfoMember) {
-        this.mCompleteInfoMember = mCompleteInfoMember;
-    }
+
 }

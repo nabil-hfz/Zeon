@@ -2,13 +2,13 @@ package com.example.volley.zeon.Util;
 
 public class Constants {
     //future vision url
-    public static final String FUTURE_VISION_URL = "https://mtmt2141.000webhostapp.com/getFutureVision.php";
+    public static final String FUTURE_VISION_URL = "https://mtmt2141.000webhostapp.com/API/getFutureVision.php";
 
     //division url
-    public static final String DIVISION_URL = "https://mtmt2141.000webhostapp.com/getDepartments.php";
+    public static final String DIVISION_URL = "https://mtmt2141.000webhostapp.com/API/getDepartments.php";
 
     //mainNews url
-    public static final String MAIN_NEWS_URL="https://mtmt2141.000webhostapp.com/getNews.php";
+    public static final String MAIN_NEWS_URL="https://mtmt2141.000webhostapp.com/API/getNews.php";
 
     /**
      * TEAM EMAIL for send the  messages to it .
