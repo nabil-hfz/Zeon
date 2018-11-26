@@ -15,12 +15,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+//import com.bumptech.glide.Glide;
+//import com.bumptech.glide.request.RequestOptions;
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.R;
 import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
+import com.squareup.picasso.Picasso;
 
 /**
  * Author of this class is Louay .
@@ -65,7 +66,8 @@ public class aboutUsActivity extends AppCompatActivity {
 
         // Picasso.get().load(Constants.ALL_TEAM_PHOTO_URL).fit().centerCrop().into(mZeonTeamImage);
 
-        Glide.with(this).load(Uri.parse(Constants.ALL_TEAM_PHOTO_URL)).apply(RequestOptions.centerCropTransform()).into(mZeonTeamImage);
+        Picasso.get().load(Uri.parse(Constants.ALL_TEAM_PHOTO_URL)).fit().centerInside().into(mZeonTeamImage);
+      //  Glide.with(this).load(Uri.parse(Constants.ALL_TEAM_PHOTO_URL)).apply(RequestOptions.centerCropTransform()).into(mZeonTeamImage);
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
 
