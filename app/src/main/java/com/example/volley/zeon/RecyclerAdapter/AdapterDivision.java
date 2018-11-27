@@ -1,14 +1,17 @@
 package com.example.volley.zeon.RecyclerAdapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.volley.zeon.DetailsDivision;
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
 import com.squareup.picasso.Picasso;
@@ -20,7 +23,7 @@ import java.util.List;
  */
 
 
-public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder>{
+public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder> {
 
     /**
      * Tag for the log messages
@@ -31,12 +34,12 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
     List<Division> mDivisionList;
 
-    TextView mEmptyStateTextView ;
+    TextView mEmptyStateTextView;
 
     /**
      * Create a new {@link AdapterDivision} object.
      *
-     * @param mContext      is the current mContext (i.e. Activity) that the adapter is being created in.
+     * @param mContext     is the current mContext (i.e. Activity) that the adapter is being created in.
      * @param divisionList is the list of {@link Division }s to be displayed.
      */
 
@@ -54,9 +57,9 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(final Holder holder, int position) {
 
-        Division currentDivision = mDivisionList.get(position);
+        final Division currentDivision = mDivisionList.get(position);
 
 
         // Get the name member from the currentDivision object and set this text on
@@ -72,17 +75,31 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         // If an image is available, display the provided   Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
         //"https://cdn.pixabay.com/user/2013/11/05/02-10-23-764_250x250.jpg"
         Picasso.get().load(currentDivision.getImageMemberUrl()).fit().centerInside().into(holder.mImageMember);
-       // holder.mImageMember.setImageResource(currentDivision.getImageMemberUrl());
-         // Make sure the ImageView is visible
+        // holder.mImageMember.setImageResource(currentDivision.getImageMemberUrl());
+        // Make sure the ImageView is visible
         holder.mImageMember.setVisibility(View.VISIBLE);
 
+        holder.mImageMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri ImageMemberUrl = Uri.parse(currentDivision.getImageMemberUrl());
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(ImageMemberUrl, "image/*");
+                mContext.startActivity(Intent.createChooser(intent, "Open [App] images"));
+            }
+        });
+        holder.mConstraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent visionIntent = new Intent(mContext, DetailsDivision.class);
+                mContext.startActivity(visionIntent);
+            }
+        });
     }
-
-
 
     @Override
     public int getItemCount() {
-       // mEmptyStateTextView.setVisibility(mDivisionList.size() > 0 ? View.GONE : View.VISIBLE);
+        // mEmptyStateTextView.setVisibility(mDivisionList.size() > 0 ? View.GONE : View.VISIBLE);
         return mDivisionList.size();
     }
 
@@ -91,13 +108,15 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         return position;
     }
 
-    class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class Holder extends RecyclerView.ViewHolder {
 
         private TextView mNameMember;
 
         private TextView mMajorityMember;
 
         private ImageView mImageMember;
+
+        private ConstraintLayout mConstraintLayout;
 
 
         Holder(View view) {
@@ -108,26 +127,26 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
             mMajorityMember = view.findViewById(R.id.majority_member);
 
             mImageMember = view.findViewById(R.id.member_photo);
-            mImageMember.setOnClickListener(this);
 
-            view.setOnClickListener(this);
+            mConstraintLayout = view.findViewById(R.id.WholeConstraintLayout);
+
         }
 
-        @Override
+       /* @Override
         public void onClick(View view) {
 
-            switch (view.getId())
-            {
-            case R.id.member_photo:
-                Toast.makeText(mContext,mNameMember.getText().toString(),Toast.LENGTH_SHORT).show();
-            break;
-            case R.id.division_card:
-                Toast.makeText(mContext,mMajorityMember.getText().toString(),Toast.LENGTH_SHORT).show();
-                break;
+            int position = view.getId();
+            switch (position) {
+                case R.id.member_photo:
+                    // Toast.makeText(mContext,mNameMember.getText().toString(),Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.division_card:
+                    Toast.makeText(mContext, mMajorityMember.getText().toString(), Toast.LENGTH_SHORT).show();
+                    break;
                 default:
                     break;
 
             }
-        }
+        }*/
     }
 }

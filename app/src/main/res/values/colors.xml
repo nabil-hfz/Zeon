@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e1d59500</color>
-    <color name="colorPrimaryDark">#c8000000</color>
-    <color name="colorAccent">#c8000000</color>
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorAccent">#FF4081</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="nameMember">#000000</color>
     <color name="majorityMember">#4c4c4c</color>
@@ -13,5 +13,5 @@
     <color name="invalid_Email_EditText">#D50000</color>
     <color name="valid_Email_Text">#558B2F</color>
     <color name="valid_Email_EditText">#64DD17</color>
-    <color name="progressBarColor">#CD295A</color>
+    <color name="progressBarColor">#512DA8</color>
 </resources>

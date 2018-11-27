@@ -11,9 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +81,9 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
     private InternetAvailabilityChecker mInternetAvailabilityChecker;
 
+    private View.OnClickListener onItemClickListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +117,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, RecyclerView.VERTICAL));
 
         // mRecyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.VERTICAL));
 
@@ -158,8 +159,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                 // Update empty state with no connection error message
                 mEmptyStateTextView.setText(R.string.no_internet_connection);
             }
-        }
-        else {
+        } else {
 
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
@@ -183,11 +183,11 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        int id=jsonObject.getInt("ID");
+                        int id = jsonObject.getInt("ID");
                         String mNameDivision = jsonObject.getString("Name");
                         String mMajourity = jsonObject.getString("Department");
 
-                        mDivisionList.add(new Division(id,mNameDivision, mMajourity, Constants.TEAM_INFO_IMAGE[i]));
+                        mDivisionList.add(new Division(id, mNameDivision, mMajourity, Constants.TEAM_INFO_IMAGE[i]));
                     }
 
                     mSimpleProgressBar.setVisibility(View.GONE);
