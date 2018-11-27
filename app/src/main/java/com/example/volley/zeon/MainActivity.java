@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RequestQueue queue;
-    private List<MainNews>mainNewsList;
+    private List<MainNews> mainNewsList;
 
 
     @Override
@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imageZeonListener();
 
 
-        queue= Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
 
-        mainNewsList=new ArrayList<>();
-        recyclerView=findViewById(R.id.main_recycler_view);
+        mainNewsList = new ArrayList<>();
+        recyclerView = findViewById(R.id.main_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -99,31 +99,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void getJsonNews() {
         mainNewsList.clear();
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Constants.MAIN_NEWS_URL,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.MAIN_NEWS_URL,
                 (String) null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 try {
-                    JSONArray jsonArray=response.getJSONArray("result");
+                    JSONArray jsonArray = response.getJSONArray("result");
 
-                    int id=-1;
-                    String name=null;
-                    String brief=null;
-                    for(int i=0;i<jsonArray.length();i++)
-                    {
-                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                    int id = -1;
+                    String name = null;
+                    String brief = null;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        if(jsonObject.has("ID"))
-                         id=jsonObject.getInt("ID");
+                        if (jsonObject.has("ID"))
+                            id = jsonObject.getInt("ID");
 
-                        if(jsonObject.has("Name"))
-                         name=jsonObject.getString("Name");
+                        if (jsonObject.has("Name"))
+                            name = jsonObject.getString("Name");
 
-                        if(jsonObject.has("Brief"))
-                         brief=jsonObject.getString("Brief");
+                        if (jsonObject.has("Brief"))
+                            brief = jsonObject.getString("Brief");
 
-                        MainNews mainNews=new MainNews(id,name,brief);
+                        MainNews mainNews = new MainNews(id, name, brief);
 
                         mainNewsList.add(mainNews);
                     }
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     e.printStackTrace();
                 }
 
-                adapter=new AdapterMainNews(getApplicationContext(),mainNewsList);
+                adapter = new AdapterMainNews(getApplicationContext(), mainNewsList);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
