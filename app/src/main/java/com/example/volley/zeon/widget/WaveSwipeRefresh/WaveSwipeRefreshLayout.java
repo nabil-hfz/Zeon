@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.volley.zeon.widget;
+package com.example.volley.zeon.widget.WaveSwipeRefresh;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

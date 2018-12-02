@@ -30,7 +30,7 @@ import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
 import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
-import com.example.volley.zeon.widget.WaveSwipeRefreshLayout;
+import com.example.volley.zeon.widget.WaveSwipeRefresh.WaveSwipeRefreshLayout;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
@@ -194,6 +194,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
             }
         }, 4000);
     }
+
     private void getJsonDivision() {
 
         mDivisionList.clear();
