@@ -3,9 +3,11 @@ package com.example.volley.zeon.MenuActivity;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -28,6 +30,7 @@ import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
 import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
+import com.example.volley.zeon.widget.WaveSwipeRefreshLayout;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
@@ -37,6 +40,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Author of this class is Louay .
@@ -81,7 +85,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
     private InternetAvailabilityChecker mInternetAvailabilityChecker;
 
-    private View.OnClickListener onItemClickListener;
+    private WaveSwipeRefreshLayout mWaveSwipeRefreshLayout;
 
 
     @Override
@@ -109,6 +113,10 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mEmptyStateTextView = findViewById(R.id.empty_view);
 
+        mWaveSwipeRefreshLayout = findViewById(R.id.main_swipe);
+
+        mWaveSwipeRefreshLayout.setWaveColor(Color.argb(235, 255, 255, 0));
+
         mDivisionList = new ArrayList<>();
 
         mRecyclerView = findViewById(R.id.recycler_view);
@@ -125,13 +133,20 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mRecyclerView.setAdapter(mDivisionAdapter);
 
-
+        mWaveSwipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
     }
+
 
     //Implement InternetConnectivityListener interface
     // where ever you want to listen to internet connectivity changes (E.g. in activity, fragment or service).
     @Override
     public void onInternetConnectivityChanged(boolean isConnected) {
+
         if (isConnected) {
             // Get a reference to the ConnectivityManager to check state of network connectivity
             ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -170,6 +185,15 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         }
     }
 
+    private void refresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                mWaveSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 4000);
+    }
     private void getJsonDivision() {
 
         mDivisionList.clear();
