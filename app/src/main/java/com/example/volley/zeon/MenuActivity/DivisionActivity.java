@@ -30,7 +30,7 @@ import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
 import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
-import com.example.volley.zeon.widget.WaveSwipeRefresh.WaveSwipeRefreshLayout;
+import com.example.volley.zeon.widget.WaveSwipeRefreshFolder.WaveSwipeRefreshLayout;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 

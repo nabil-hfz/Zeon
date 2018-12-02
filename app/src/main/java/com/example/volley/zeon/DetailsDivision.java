@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.volley.zeon.widget.ProgressWheel.ProgressWheel;
+import com.example.volley.zeon.widget.ProgressWheelFolder.ProgressWheel;
 
 public class DetailsDivision extends AppCompatActivity {
 
