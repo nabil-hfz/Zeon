@@ -20,10 +20,10 @@ public class DivisionDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_division);
 
-        mTextView = findViewById(R.id.empty_text_view_Division_Details);
+        mTextView = findViewById(R.id.i);
         mTextView.setVisibility(View.INVISIBLE);
 
-        mProgressWheel = findViewById(R.id.progress_wheel_Division_Details);
+        mProgressWheel = findViewById(R.id.progress_wheel);
 
         Intent intent = getIntent();
 
