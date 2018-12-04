@@ -3,24 +3,22 @@ package com.example.volley.zeon.MenuActivity;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.volley.zeon.MainActivity;
 import com.example.volley.zeon.R;
+import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
 
 /**
@@ -35,15 +33,6 @@ public class ContactActivity extends AppCompatActivity {
      * Tag for the log messages
      */
     private static final String LOG_TAG = ContactActivity.class.getSimpleName();
-    /**
-     * Progress Bar that for two sec
-     */
-    ProgressBar mSimpleProgressBar;
-
-    /**
-     * TEAM EMAIL for send the  messages to it .
-     */
-    private static final String[] TEAM_EMAIL = {"mahmoudtrro@gmail.com", "nabil.alhfz98@gmail.com"};
     /**
      * TextView for display an message say invalid email when the sender Types their email in wrong manner .
      */
@@ -81,7 +70,7 @@ public class ContactActivity extends AppCompatActivity {
      */
     private AppCompatEditText mEditTextEmail;
 
-     @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_us_activity);
@@ -106,8 +95,15 @@ public class ContactActivity extends AppCompatActivity {
 
                 Intent mail = handlingInfo();
 
-                if (mail.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mail);
+                try {
+                    if (mail.resolveActivity(getPackageManager()) != null) {
+                        startActivity(Intent.createChooser(mail, "Send mail..."));
+                        Toast.makeText(ContactActivity.this, "The letter has been sent.", Toast.LENGTH_LONG);
+                        finish();
+                    }
+
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(ContactActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -118,23 +114,25 @@ public class ContactActivity extends AppCompatActivity {
         textViewInvalidEmail.setVisibility(View.GONE);
 
         mEditTextEmail = findViewById(R.id.EditTextEmail);
-        //     Log.v("ContactActivity", "\n addTextChangedListener \n");
         mEditTextEmail.addTextChangedListener(new TextWatcherForEmail());
 
     }
 
     private void getAllInfoAboutSender() {
         EditText editText = findViewById(R.id.EditTextName);
-        mNameSender = editText.getText().toString();
+        mNameSender = editText.getText().toString().trim();
+
+        mEmailSender = mEditTextEmail.getText().toString().trim();
 
         editText = findViewById(R.id.EditTextSubject);
-        mSubjectOfMessage = editText.getText().toString();
+        mSubjectOfMessage = editText.getText().toString().trim();
+
 
         Spinner feedbackSpinner = findViewById(R.id.SpinnerFeedbackType);
-        mFeedbackType = feedbackSpinner.getSelectedItem().toString();
+        mFeedbackType = feedbackSpinner.getSelectedItem().toString().trim();
 
         editText = findViewById(R.id.EditTextFeedbackDetail);
-        mBodyOfSentMessage = editText.getText().toString();
+        mBodyOfSentMessage = editText.getText().toString().trim();
 
         CheckBox responseCheckbox = findViewById(R.id.CheckBoxResponse);
         mRequireResponse = responseCheckbox.isChecked();
@@ -146,7 +144,8 @@ public class ContactActivity extends AppCompatActivity {
             return false;
         }
         if (mEmailSender == null || mEmailSender.isEmpty()) {
-            Toast.makeText(ContactActivity.this, "Sorry Field Email is Empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactActivity.this, "Sorry Field Email is Empty  ", Toast.LENGTH_LONG).show();
+            //Log.v(LOG_TAG, "\n Email Sender : "+ mEmailSender +"\n");
             return false;
         }
 
@@ -166,17 +165,20 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private Intent handlingInfo() {
-        Intent mail = new Intent(Intent.ACTION_SENDTO);
+        Intent mail = new Intent(Intent.ACTION_SEND);
 
-        mail.putExtra(Intent.EXTRA_EMAIL, new String[]{TEAM_EMAIL[1]});
+        mail.setType("message/rfc822");
+
+        mail.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.TEAM_EMAIL[1]});
 
         mail.putExtra(Intent.EXTRA_SUBJECT, mSubjectOfMessage);
 
         mail.putExtra(Intent.EXTRA_TEXT, transformToCompleteString());
 
-        mail.setData(Uri.parse("mailto: "));
+        // mail.setData(Uri.parse("mailto: "));
 
         return mail;
+
     }
 
     private String transformToCompleteString() {
@@ -193,13 +195,32 @@ public class ContactActivity extends AppCompatActivity {
         return "No need to response from team";
     }
 
+    @Override
+    public void onPrepareNavigateUpTaskStack(TaskStackBuilder builder) {
+        super.onPrepareNavigateUpTaskStack(builder);
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        NavUtils.navigateUpTo(this, intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
+    }
+    //TODO : Advanced ...
+    // This method for : MainActivity needs to know which album we want to display.
+    // On TrackActivity, we need to override onPrepareSupportNavigateUpTaskStack to edit the intent
+    // that will start the parent activity when pressing Up: specially to use when get Notification
+    // and get back to mainActivity instead of go back to phone .
+
     private class TextWatcherForEmail implements TextWatcher {
         public TextWatcherForEmail() {
 
         }
 
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            Log.v("ContactActivity", "\n beforeTextChanged \n");
+            //Log.v(LOG_TAG, "\n beforeTextChanged \n");
 
 
         }
@@ -233,21 +254,5 @@ public class ContactActivity extends AppCompatActivity {
             }
         }
     }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
-    }
-    //TODO : Advanced ...
-    // This method for : MainActivity needs to know which album we want to display.
-    // On TrackActivity, we need to override onPrepareSupportNavigateUpTaskStack to edit the intent
-    // that will start the parent activity when pressing Up: specially to use when get Notification
-    // and get back to mainActivity instead of go back to phone .
 
-    @Override
-    public void onPrepareNavigateUpTaskStack(TaskStackBuilder builder) {
-        super.onPrepareNavigateUpTaskStack(builder);
-        Intent intent = new Intent();
-        intent.setClass(this, MainActivity.class);
-        NavUtils.navigateUpTo(this, intent);    }
 }

@@ -19,22 +19,19 @@ import javax.net.ssl.X509TrustManager;
 
 public class UtilTools {
 
-    public final static boolean isValidEmail(CharSequence target) {
+    public final static boolean isValidEmail(CharSequence email) {
 
-        Pattern patternEmail = Pattern.compile(".+@.+\\.[a-z]+");
+        Pattern patternEmail = Pattern.compile("^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
 
         // String email = "xyz@xyzdomain.com";
 
-        Matcher matcherEmail = patternEmail.matcher(target);
+        Matcher matcherEmail = patternEmail.matcher(email);
 
+        //    return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         boolean matchFound = matcherEmail.matches();
-        Log.v("UtilTools", "\nnabel UtilTools\n");
+        Log.v("UtilTools", "\n nabel UtilTools\n");
 
-        if (TextUtils.isEmpty(target) || !matchFound) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches() && matchFound;
-        }
+        return !TextUtils.isEmpty(email) && matchFound;
     }
 
     public final static Intent makeIntentOfEmail(String email) {

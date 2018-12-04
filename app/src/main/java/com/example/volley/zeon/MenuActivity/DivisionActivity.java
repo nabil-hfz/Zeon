@@ -1,11 +1,8 @@
 package com.example.volley.zeon.MenuActivity;
 
 import android.app.TaskStackBuilder;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
@@ -13,8 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +27,7 @@ import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
 import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
+import com.example.volley.zeon.widget.ProgressWheelFolder.ProgressWheel;
 import com.example.volley.zeon.widget.WaveSwipeRefreshFolder.WaveSwipeRefreshLayout;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
@@ -60,7 +58,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
     /**
      * Progress Bar that for two sec
      */
-    ProgressBar mSimpleProgressBar;
+    private ProgressWheel mProgressWheel;
     /**
      * Adapter for the list of Division
      */
@@ -70,12 +68,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
      * TextView that is displayed when the list is empty
      */
     private TextView mEmptyStateTextView;
-
-    /**
-     * TAG for cancel my request when go to main activity .
-     */
-    public static final String TAG = "TagCancel";
-
 
     private RequestQueue mRequestQueue;
 
@@ -93,6 +85,13 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_division);
 
+        // First, hide loading indicator so error message will be visible
+        mProgressWheel = findViewById(R.id.progress_wheel_division);
+        mProgressWheel.setVisibility(View.VISIBLE);
+
+        mEmptyStateTextView = findViewById(R.id.empty_text_view_division);
+        mEmptyStateTextView.setVisibility(View.GONE);
+
         // Initialise it in application’s onCreate() function.
         // This is necessary step before starting using the library because
         // it needs context to register connectivity broadcast receiver.
@@ -108,16 +107,12 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         //This for Enabling https connections with SSL HTTp ...
         new UtilTools.handleSSLHandshake().nuke();
 
-        // First, hide loading indicator so error message will be visible
-        mSimpleProgressBar = findViewById(R.id.simpleProgressBar);
-
-        mEmptyStateTextView = findViewById(R.id.empty_view);
-
         mWaveSwipeRefreshLayout = findViewById(R.id.main_swipe);
+        //mWaveSwipeRefreshLayout.setVisibility(View.VISIBLE);
 
         mWaveSwipeRefreshLayout.setWaveColor(Color.argb(235, 255, 255, 0));
 
-        mDivisionList = new ArrayList<>();
+        mDivisionList = new ArrayList<Division>();
 
         mRecyclerView = findViewById(R.id.recycler_view);
 
@@ -139,6 +134,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                 refresh();
             }
         });
+        mWaveSwipeRefreshLayout.setVisibility(View.VISIBLE);
     }
 
 
@@ -146,42 +142,17 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
     // where ever you want to listen to internet connectivity changes (E.g. in activity, fragment or service).
     @Override
     public void onInternetConnectivityChanged(boolean isConnected) {
-
         if (isConnected) {
-            // Get a reference to the ConnectivityManager to check state of network connectivity
-            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            // Get details on the currently active default data network
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-            // If there is a network connection, fetch data
-            if (networkInfo != null && networkInfo.isConnected()) {
-
-                mSimpleProgressBar.setVisibility(ProgressBar.VISIBLE);
-
-                mEmptyStateTextView.setVisibility(View.INVISIBLE);
-
-                mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-
-                getJsonDivision();
-
-            } else {
-
-                // Otherwise, display error
-                // First, hide loading indicator so error message will be visible
-                mSimpleProgressBar.setVisibility(View.GONE);
-
-                // Update empty state with no connection error message
-                mEmptyStateTextView.setText(R.string.no_internet_connection);
-            }
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            getJsonDivision();
         } else {
-
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
-            mSimpleProgressBar.setVisibility(View.GONE);
+            mProgressWheel.setVisibility(View.GONE);
 
             // Update empty state with no connection error message
             mEmptyStateTextView.setText(R.string.no_internet_connection);
+            mEmptyStateTextView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -215,23 +186,25 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                         mDivisionList.add(new Division(id, mNameDivision, mMajourity, Constants.TEAM_INFO_IMAGE[i]));
                     }
 
-                    mSimpleProgressBar.setVisibility(View.GONE);
+                    mProgressWheel.setVisibility(View.GONE);
 
                     // If there is a valid list of {@link  Divisions }s, then add them to the adapter's
                     // data set. This will trigger the RecyclerView to update.
                     if (mDivisionList != null && !mDivisionList.isEmpty()) {
 
                         // Update the adapter with new Inf
-
                         mDivisionAdapter.notifyDataSetChanged();
 
                     } else {
-                        mRecyclerView.setVisibility(View.GONE);
+                        mProgressWheel.setVisibility(View.GONE);
                         // Set empty state text to display "No Division found."
                         mEmptyStateTextView.setText(R.string.no_Division_Members);
+                        mEmptyStateTextView.setVisibility(View.VISIBLE);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.v(LOG_TAG, "\n<<<<<<<<<" + e.getMessage() + ">>>>>>>>>>>>>\n");
+
                 }
             }
         }, new Response.ErrorListener() {
@@ -240,12 +213,15 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                 error.printStackTrace();
                 // Otherwise, display error
                 // First, hide loading indicator so error message will be visible
-                mSimpleProgressBar.setVisibility(View.GONE);
-                mEmptyStateTextView.setText(R.string.Error_Divisions_Data);
+                mProgressWheel.setVisibility(View.GONE);
+                mEmptyStateTextView.setText(R.string.Error_Fetch_Data);
+                mEmptyStateTextView.setVisibility(View.VISIBLE);
+                Log.v(LOG_TAG, "\n<<<<<<<<<" + error.getMessage() + ">>>>>>>>>>>>>\n");
+
             }
         });
         // Set the tag on the request.
-        jsonObjectRequest.setTag(TAG);
+        jsonObjectRequest.setTag(Constants.TAG);
         mRequestQueue.add(jsonObjectRequest);
     }
 
@@ -253,7 +229,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
     protected void onStop() {
         super.onStop();
         if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(TAG);
+            mRequestQueue.cancelAll(Constants.TAG);
         }
     }
 

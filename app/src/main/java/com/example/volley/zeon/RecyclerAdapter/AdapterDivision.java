@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.volley.zeon.DetailsDivision;
+import com.example.volley.zeon.DivisionDetails;
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
 import com.squareup.picasso.Picasso;
@@ -74,7 +74,7 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
         // If an image is available, display the provided   Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
         //"https://cdn.pixabay.com/user/2013/11/05/02-10-23-764_250x250.jpg"
-        Picasso.get().load(currentDivision.getImageMemberUrl()).fit().centerInside().into(holder.mImageMember);
+        Picasso.get().load(Uri.parse(currentDivision.getImageMemberUrl())).fit().centerInside().into(holder.mImageMember);
         // holder.mImageMember.setImageResource(currentDivision.getImageMemberUrl());
         // Make sure the ImageView is visible
         holder.mImageMember.setVisibility(View.VISIBLE);
@@ -91,15 +91,15 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         holder.mConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent visionIntent = new Intent(mContext, DetailsDivision.class);
-                mContext.startActivity(visionIntent);
+                Intent DivisionIntent = new Intent(mContext, DivisionDetails.class);
+                DivisionIntent.putExtra(Intent.EXTRA_TEXT, currentDivision.getNameMember());
+                mContext.startActivity(DivisionIntent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        // mEmptyStateTextView.setVisibility(mDivisionList.size() > 0 ? View.GONE : View.VISIBLE);
         return mDivisionList.size();
     }
 
@@ -131,22 +131,5 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
             mConstraintLayout = view.findViewById(R.id.WholeConstraintLayout);
 
         }
-
-       /* @Override
-        public void onClick(View view) {
-
-            int position = view.getId();
-            switch (position) {
-                case R.id.member_photo:
-                    // Toast.makeText(mContext,mNameMember.getText().toString(),Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.division_card:
-                    Toast.makeText(mContext, mMajorityMember.getText().toString(), Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    break;
-
-            }
-        }*/
     }
 }

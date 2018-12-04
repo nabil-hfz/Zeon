@@ -1,6 +1,14 @@
 package com.example.volley.zeon.Util;
 
 public class Constants {
+
+    public static final String TEAM_NAME = "ZEON TEAM";
+
+    /**
+     * TAG for cancel my request when go to main activity .
+     */
+    public static final String TAG = "TagCancel";
+
     //future vision url
     public static final String FUTURE_VISION_URL = "https://mtmt2141.000webhostapp.com/API/getFutureVision.php";
 
@@ -17,7 +25,12 @@ public class Constants {
      */
     public static final String T_EMAIL = "https://www.facebook.com/profile.php?id=100003729378979";
 
-    public static final String TEAM_INFO_IMAGE[] = {"https://i.ytimg.com/vi/ktlQrO2Sifg/maxresdefault.jpg",
+    /**
+     * TEAM EMAIL for send the  messages to it .
+     */
+    public static final String[] TEAM_EMAIL = {"mahmoudtrro@gmail.com", "bashiralterh1998@gmail.com"};
+
+    public static final String[] TEAM_INFO_IMAGE = {"https://i.ytimg.com/vi/ktlQrO2Sifg/maxresdefault.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd-mJ0J7sGeROVjPCDOmjAHAaYt6rmjMN1m7pB5Qkju4su0TQZ",
             "http://mygreatminds.com/wp-content/uploads/2018/04/495272006.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcX4ISMPQ2PF2fP_2gBS82CnzCDsxC91Tt-U-sLn0wnlkavAhK",

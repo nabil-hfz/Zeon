@@ -26,7 +26,7 @@
         <activity
             android:name=".MenuActivity.DivisionActivity"
             android:autoRemoveFromRecents="true"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:configChanges="orientation|screenSize"
             android:label="@string/division"
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
@@ -40,7 +40,9 @@
         <activity
             android:name=".MenuActivity.ProjectActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation|screenSize"
             android:label="@string/projects"
+            android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track">
             <!-- Parent activity meta-data to support API level 7+ -->
@@ -52,6 +54,7 @@
         <activity
             android:name=".MenuActivity.FutureVisionActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation|screenSize"
             android:label="@string/future_vision"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track">
@@ -64,6 +67,7 @@
         <activity
             android:name=".MenuActivity.ContactActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:label="@string/contact_us"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track">
@@ -76,26 +80,40 @@
         <activity
             android:name=".MenuActivity.aboutUsActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation|screenSize"
             android:label="@string/about_us"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track"
-            android:theme="@style/AboutUsTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.volley.zeon.MainActivity" />
         </activity>
         <activity
-            android:name=".DetailsDivision"
+            android:name=".DivisionDetails"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation|screenSize"
             android:label="@string/DetailsDivision"
             android:parentActivityName=".MenuActivity.DivisionActivity"
+
             android:taskAffinity=".Track">
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.volley.zeon.MenuActivity.DivisionActivity" />
         </activity>
+        <activity
+            android:name=".ProjectDetails"
+            android:autoRemoveFromRecents="true"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/DetailsProject"
+            android:parentActivityName=".MenuActivity.ProjectActivity"
+            android:taskAffinity=".Track">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.volley.zeon.MenuActivity.ProjectActivity" />
+        </activity>
     </application>
-
 </manifest>
