@@ -7,6 +7,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,6 +22,8 @@ import com.example.volley.zeon.R;
 import com.example.volley.zeon.RecyclerAdapter.AdapterFutureVision;
 import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
+import com.pnikosis.materialishprogress.ProgressWheel;
+//import com.example.volley.zeon.widget.ProgressWheelFolder.ProgressWheel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +48,8 @@ public class FutureVisionActivity extends AppCompatActivity {
     private AdapterFutureVision adapter;
     private List<FutureVision> futureVisionList = new ArrayList<>();
     private RequestQueue requestQueue;
-    private boolean check=false;
+    private ProgressWheel progressWheel;
+
 
 
     @Override
@@ -62,10 +66,8 @@ public class FutureVisionActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        if (futureVisionList.size() == 0)
-            Toast.makeText(this, "loading...", Toast.LENGTH_SHORT).show();
-
-        //while (!check)
+        progressWheel= findViewById(R.id.progress_wheel);
+        progressWheel.setVisibility(View.VISIBLE);
         getJsonVision();
 
 
@@ -116,7 +118,7 @@ public class FutureVisionActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                check=true;
+                progressWheel.setVisibility(View.INVISIBLE);
                 adapter = new AdapterFutureVision(getApplicationContext(), futureVisionList);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

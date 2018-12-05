@@ -64,7 +64,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
     /**
      * Adapter for the list of Division
      */
-    private List<Division> mDivisionList;
+    private List<Division> mDivisionList=new ArrayList<>();
 
     /**
      * TextView that is displayed when the list is empty
@@ -115,9 +115,8 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mWaveSwipeRefreshLayout = findViewById(R.id.main_swipe);
 
-        mWaveSwipeRefreshLayout.setWaveColor(Color.argb(235, 255, 255, 0));
+        mWaveSwipeRefreshLayout.setWaveColor(Color.argb(255, 220, 160, 60));
 
-        mDivisionList = new ArrayList<>();
 
         mRecyclerView = findViewById(R.id.recycler_view);
 
@@ -126,12 +125,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, RecyclerView.VERTICAL));
-
-        // mRecyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.VERTICAL));
-
-        mDivisionAdapter = new AdapterDivision(DivisionActivity.this, mDivisionList);
-
-        mRecyclerView.setAdapter(mDivisionAdapter);
 
         mWaveSwipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -191,6 +184,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
             public void run() {
 
                 mWaveSwipeRefreshLayout.setRefreshing(false);
+                getJsonDivision();
             }
         }, 4000);
     }
@@ -207,12 +201,22 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                     JSONArray jsonArray = response.getJSONArray("result");
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        int id = jsonObject.getInt("ID");
-                        String mNameDivision = jsonObject.getString("Name");
-                        String mMajourity = jsonObject.getString("Department");
+                        int id = 0;
+                        String mMajourity=null;
+                        String mNameDivision = null;
 
-                        mDivisionList.add(new Division(id, mNameDivision, mMajourity, Constants.TEAM_INFO_IMAGE[i]));
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        if(jsonObject.has("ID"))
+                         id = jsonObject.getInt("ID");
+
+                        if(jsonObject.has("Name"))
+                         mNameDivision = jsonObject.getString("Name");
+
+                        if(jsonObject.has("Department"))
+                        mMajourity = jsonObject.getString("Department");
+
+                        mDivisionList.add(new Division(id, mNameDivision, mMajourity, Constants.DIVISION_PHOTO+id+".jpg"));
                     }
 
                     mSimpleProgressBar.setVisibility(View.GONE);
@@ -223,7 +227,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
                         // Update the adapter with new Inf
 
-                        mDivisionAdapter.notifyDataSetChanged();
+                       // mDivisionAdapter.notifyDataSetChanged();
 
                     } else {
                         mRecyclerView.setVisibility(View.GONE);
@@ -233,7 +237,13 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                mDivisionAdapter = new AdapterDivision(getApplicationContext(), mDivisionList);
+
+                mRecyclerView.setAdapter(mDivisionAdapter);
+
+                mDivisionAdapter.notifyDataSetChanged();
             }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

@@ -38,13 +38,14 @@
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        wheel:matProg_barColor="#5588FF"
+        wheel:matProg_barColor="#dbb138"
         wheel:matProg_progressIndeterminate="true" />
 
 </android.support.constraint.ConstraintLayout>
