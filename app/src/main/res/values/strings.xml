@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="main_news">MainNews</string>
+    <string name="main_news">Main News</string>
     <string name="division">Divisions</string>
     <string name="projects">Projects</string>
     <string name="future_vision">Future vision</string>
@@ -39,4 +39,10 @@
     <string name="feed_back_type4">Bug</string>
     <string name="feed_back_type5">Other</string>
     <string name="feed_back_body_detail">Feedback Details...</string>
+    <string name="facebook_account">Facebook Account</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="department">Department</string>
+    <string name="skills">Skills</string>
+    <string name="brief">Brief</string>
+    <string name="projests">Projests</string>
 </resources>

@@ -47,7 +47,6 @@
                     android:layout_height="?attr/actionBarSize"
                     app:contentInsetStart="72dp"
                     app:layout_collapseMode="pin"
-                    app:navigationIcon="@drawable/ic_menu"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -158,19 +157,6 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
-
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:clickable="true"
-            android:src="@drawable/ic_discuss"
-            app:backgroundTint="@color/colorAccent"
-            app:elevation="6dp"
-            app:fabSize="normal"
-            app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|right|end"
-            app:pressedTranslationZ="12dp" />
 
     </android.support.design.widget.CoordinatorLayout>
 

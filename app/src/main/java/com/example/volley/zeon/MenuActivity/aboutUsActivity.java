@@ -49,9 +49,7 @@ public class aboutUsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_about_us);
 
         final Toolbar toolbar = findViewById(R.id.toolbar_aboutUs);
@@ -115,11 +113,11 @@ public class aboutUsActivity extends AppCompatActivity {
 
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
-    }
+    }*/
 
     private void textViewContactUsPressedEmail() {
 

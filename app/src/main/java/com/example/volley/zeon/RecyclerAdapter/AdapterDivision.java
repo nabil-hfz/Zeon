@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.volley.zeon.DetailsDivision;
+import com.example.volley.zeon.DivisionDetails;
 import com.example.volley.zeon.Model.Division;
 import com.example.volley.zeon.R;
 import com.squareup.picasso.Picasso;
@@ -91,7 +91,9 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         holder.mConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent visionIntent = new Intent(mContext, DetailsDivision.class);
+                Intent visionIntent = new Intent(mContext, DivisionDetails.class);
+                visionIntent.putExtra("ID",currentDivision.getId());
+                visionIntent.putExtra("IMAGE",currentDivision.getImageMemberUrl());
                 mContext.startActivity(visionIntent);
             }
         });

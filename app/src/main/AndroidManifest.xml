@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.volley.zeon">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -26,9 +27,7 @@
         <activity
             android:name=".MenuActivity.DivisionActivity"
             android:autoRemoveFromRecents="true"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:label="@string/division"
-            android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track">
             <!-- Parent activity meta-data to support API level 7+ -->
@@ -85,16 +84,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.volley.zeon.MainActivity" />
         </activity>
+
         <activity
-            android:name=".DetailsDivision"
+            android:name=".DivisionDetails"
             android:autoRemoveFromRecents="true"
-            android:label="@string/DetailsDivision"
+           android:label="@string/DetailsDivision"
             android:parentActivityName=".MenuActivity.DivisionActivity"
             android:taskAffinity=".Track">
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.volley.zeon.MenuActivity.DivisionActivity" />
+                android:value="com.example.volley.zeon.MainActivity" />
         </activity>
     </application>
 

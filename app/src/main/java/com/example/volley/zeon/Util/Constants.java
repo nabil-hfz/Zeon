@@ -21,6 +21,8 @@ public class Constants {
     public static final String DIVISION_PHOTO = "https://mtmt2141.000webhostapp.com/uploads/admins/";
 
 
+    public static final String DIVISION_DETAIL_URL="https://mtmt2141.000webhostapp.com/API/getMember.php?ID=";
+
   /*  public static final String TEAM_INFO_IMAGE[] = {"https://i.ytimg.com/vi/ktlQrO2Sifg/maxresdefault.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd-mJ0J7sGeROVjPCDOmjAHAaYt6rmjMN1m7pB5Qkju4su0TQZ",
             "http://mygreatminds.com/wp-content/uploads/2018/04/495272006.jpg",
