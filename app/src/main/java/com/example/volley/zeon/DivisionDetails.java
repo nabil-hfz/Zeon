@@ -1,11 +1,14 @@
 package com.example.volley.zeon;
 
 
-
+import android.app.TaskStackBuilder;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,9 +21,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.volley.zeon.MenuActivity.DivisionActivity;
 import com.example.volley.zeon.Util.Constants;
+import com.example.volley.zeon.Util.UtilTools;
 import com.example.volley.zeon.widget.ProgressWheelFolder.ProgressWheel;
 import com.squareup.picasso.Picasso;
+import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
+import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,135 +36,245 @@ import org.json.JSONObject;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class DivisionDetails extends AppCompatActivity {
+public class DivisionDetails extends AppCompatActivity implements InternetConnectivityListener {
 
-    private NestedScrollView view;
-    private Animation animationa;
-
+    /**
+     * Tag for the log messages
+     */
+    public static final String LOG_TAG = DivisionDetails.class.getSimpleName();
+    /**
+     * Progress Bar that for two sec
+     */
     private ProgressWheel mProgressWheel;
+    /**
+     * TextView that is displayed when the list is empty
+     */
+    private TextView mEmptyStateTextView;
 
-    private CircleImageView member_photo;
+    private RequestQueue mRequestQueue;
 
-    private TextView member_name;
+    private NestedScrollView mNestedScrollView;
 
-    private TextView member_email;
+    private Animation mAnimation;
 
-    private TextView member_face_account;
+    private CircleImageView mMemberPhoto;
 
-    private TextView member_phone_num;
+    private TextView mMemberName;
 
-    private TextView member_department;
+    private TextView mMemberEmail;
 
-    private TextView member_skills;
+    private TextView mMemberFaceAccount;
 
-    private TextView member_brief;
+    private TextView mMemberPhoneNum;
 
-    private TextView member_projects;
+    private TextView mMemberDepartment;
 
-    private RequestQueue requestQueue;
+    private TextView mMemberSkills;
 
-    private Integer id;
-    private String imageURI;
+    private TextView mMemberBrief;
+
+    private TextView mMemberProjects;
+
+    private Integer mId;
+
+    private String mStringPathImage;
+
+    private String mMemberNameToCHeck = null;
+
+    private ConstraintLayout mDetailsDivisionConstraintLayout;
+
+    private InternetAvailabilityChecker mInternetAvailabilityChecker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_division);
 
-        initUI();
+        GetUIMethod();
+        // Initialise it in application’s onCreate() function.
+        // This is necessary step before starting using the library because
+        // it needs context to register connectivity broadcast receiver.
+        // It stores only weakReference to the context, so no need to worry about memory leaks.
+        // Also it does lazy registration of receiver; i.e. it registers receiver whenever
+        // first listener attaches to listen to internet changes and unregister itself when last listener stops listening.
+        InternetAvailabilityChecker.init(this);
 
-        animationa= AnimationUtils.loadAnimation(this,R.anim.from_right);
-        view.startAnimation(animationa);
+        mInternetAvailabilityChecker = InternetAvailabilityChecker.getInstance();
+
+        mInternetAvailabilityChecker.addInternetConnectivityListener(this);
+
+        //This for Enabling https connections with SSL HTTp ...
+        new UtilTools.handleSSLHandshake().nuke();
+
+        Log.v(LOG_TAG, "\n\n<<<<<<<<<111" + Constants.TEAM_NAME + ">>>>>>>>>>>>>\n\n");
 
         getJsonDetail();
-
+        mAnimation = AnimationUtils.loadAnimation(this, R.anim.from_right);
+        mNestedScrollView.startAnimation(mAnimation);
     }
 
-   public void initUI(){
+    private void GetUIMethod() {
 
-        view=findViewById(R.id.view);
+        mNestedScrollView = findViewById(R.id.NestedScrollView);
 
-       mProgressWheel = findViewById(R.id.progress_wheel);
+        mProgressWheel = findViewById(R.id.progress_wheel_division_details);
 
-       member_photo=findViewById(R.id.member_image);
+        mEmptyStateTextView = findViewById(R.id.empty_textView_division_details);
 
-       member_name=findViewById(R.id.member_name_detail);
+        mDetailsDivisionConstraintLayout = findViewById(R.id.DetailsDivisionConstraintLayout);
+        // mDetailsDivisionConstraintLayout.setVisibility(View.INVISIBLE);
 
-       member_email=findViewById(R.id.member_email_detail);
+        mMemberPhoto = findViewById(R.id.member_image);
 
-       member_face_account=findViewById(R.id.facebook_account_detail);
+        mMemberName = findViewById(R.id.member_name_detail);
 
-       member_phone_num=findViewById(R.id.phone_number_detail);
+        mMemberEmail = findViewById(R.id.member_email_detail);
 
-       member_department=findViewById(R.id.departments_detail);
+        mMemberFaceAccount = findViewById(R.id.facebook_account_detail);
 
-       member_skills=findViewById(R.id.skills_detail);
+        mMemberPhoneNum = findViewById(R.id.phone_number_detail);
 
-       member_brief=findViewById(R.id.brief_detail);
+        mMemberDepartment = findViewById(R.id.departments_detail);
 
-       member_projects=findViewById(R.id.projects_detail);
+        mMemberSkills = findViewById(R.id.skills_detail);
 
-       id=getIntent().getExtras().getInt("ID");
+        mMemberBrief = findViewById(R.id.brief_detail);
 
-       imageURI=getIntent().getExtras().getString("IMAGE");
+        mMemberProjects = findViewById(R.id.projects_detail);
 
-       Picasso.get().load(imageURI).fit().centerInside().into(member_photo);
+        mId = getIntent().getExtras().getInt("ID");
 
-       requestQueue= Volley.newRequestQueue(this);
+        mStringPathImage = getIntent().getExtras().getString("IMAGE");
+    }
+
+     /* @Override
+  public void onInternetConnectivityChanged(boolean isConnected) {
+        if (isConnected) {
+            Log.v(LOG_TAG, "\n\n<<<<<<<<<3333" + Constants.TEAM_NAME + ">>>>>>>>>>>>>\n\n");
+
+            mProgressWheel.setVisibility(ProgressWheel.VISIBLE);
+            mEmptyStateTextView.setVisibility(View.GONE);
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            getJsonDetail();
+            mAnimation = AnimationUtils.loadAnimation(this, R.anim.from_right);
+            mNestedScrollView.startAnimation(mAnimation);
+
+        } else if ((mMemberNameToCHeck == null || mMemberNameToCHeck.isEmpty()) && !isConnected) {
+            // Otherwise, display error
+            // First, hide loading indicator so error message will be visible
+            mProgressWheel.setVisibility(View.GONE);
+
+            // Update empty state with no connection error message
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+            mEmptyStateTextView.setVisibility(View.VISIBLE);
+        }
+    }
+*/
+
+    public void getJsonDetail() {
+        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        mDetailsDivisionConstraintLayout.setVisibility(View.INVISIBLE);
+        mMemberNameToCHeck = null;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.DIVISION_DETAIL_URL + mId,
+                (JSONObject) null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    Picasso.get().load(mStringPathImage).fit().centerInside().into(mMemberPhoto);
+
+                    JSONArray jsonArray = response.getJSONArray("result");
+
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+                    if (jsonObject.has("Name")) {
+                        mMemberName.setText(jsonObject.getString("Name"));
+                        mMemberNameToCHeck = jsonObject.getString("Name");
+                    }
+
+                    if (jsonObject.has("Email"))
+                        mMemberEmail.setText(jsonObject.getString("Email"));
+
+                    if (jsonObject.has("Facebook_account"))
+                        mMemberFaceAccount.setText(jsonObject.getString("Facebook_account"));
+
+                    if (jsonObject.has("Phone_number"))
+                        mMemberPhoneNum.setText(jsonObject.getString("Phone_number"));
+
+                    if (jsonObject.has("Department"))
+                        mMemberDepartment.setText(jsonObject.getString("Department"));
+
+                    if (jsonObject.has("Skills"))
+                        mMemberSkills.setText(jsonObject.getString("Skills"));
+
+                    if (jsonObject.has("Brief"))
+                        mMemberBrief.setText(jsonObject.getString("Brief"));
+
+                    if (jsonObject.has("Projects"))
+                        mMemberProjects.setText(jsonObject.getString("Projects"));
+                    mProgressWheel.setVisibility(View.GONE);
+                    mDetailsDivisionConstraintLayout.setVisibility(View.VISIBLE);
 
 
-   }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.v(LOG_TAG, "\n\n<<<<<<<<<222" + e.getMessage() + ">>>>>>>>>>>>>\n\n");
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                // Otherwise, display error
+                // First, hide loading indicator so error message will be visible
+                mProgressWheel.setVisibility(ProgressWheel.GONE);
+                mEmptyStateTextView.setVisibility(View.VISIBLE);
+                mEmptyStateTextView.setText(R.string.Error_Fetch_Data);
+                Log.v(LOG_TAG, "\n\n<<<<<<<<<666" + error.getMessage() + ">>>>>>>>>>>>>\n\n");
+            }
+        });
+        jsonObjectRequest.setTag(Constants.TAG);
+        mRequestQueue.add(jsonObjectRequest);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mRequestQueue != null) {
+            mRequestQueue.cancelAll(Constants.TAG);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mInternetAvailabilityChecker.removeInternetConnectivityChangeListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
+    }
+    //TODO : Advanced ...
+    // This method for : MainActivity needs to know which album we want to display.
+    // On TrackActivity, we need to override onPrepareSupportNavigateUpTaskStack to edit the intent
+    // that will start the parent activity when pressing Up: specially to use when get Notification
+    // and get back to mainActivity instead of go back to phone .
+
+    @Override
+    public void onPrepareNavigateUpTaskStack(TaskStackBuilder builder) {
+        super.onPrepareNavigateUpTaskStack(builder);
+        Intent intent = new Intent();
+        intent.setClass(this, DivisionActivity.class);
+        NavUtils.navigateUpTo(this, intent);
+    }
 
 
-   public void getJsonDetail()
-   {
-       JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Constants.DIVISION_DETAIL_URL + id,
-               (JSONObject) null, new Response.Listener<JSONObject>() {
-           @Override
-           public void onResponse(JSONObject response) {
+    @Override
+    public void onInternetConnectivityChanged(boolean isConnected) {
+        Log.v(LOG_TAG, "\n<<<<<<<<" + Constants.TEAM_NAME + ">>>>>>>>>>>>>\n");
 
-               try {
-                   JSONArray jsonArray=response.getJSONArray("result");
-
-                   JSONObject jsonObject=jsonArray.getJSONObject(0);
-
-                   if(jsonObject.has("Name"))
-                       member_name.setText(jsonObject.getString("Name"));
-
-                   if(jsonObject.has("Email"))
-                       member_email.setText(jsonObject.getString("Email"));
-
-                   if(jsonObject.has("Facebook_account"))
-                       member_face_account.setText(jsonObject.getString("Facebook_account"));
-
-                   if(jsonObject.has("Phone_number"))
-                       member_phone_num.setText(jsonObject.getString("Phone_number"));
-
-                   if(jsonObject.has("Department"))
-                       member_department.setText(jsonObject.getString("Department"));
-
-                   if(jsonObject.has("Skills"))
-                       member_skills.setText(jsonObject.getString("Skills"));
-
-                   if(jsonObject.has("Brief"))
-                       member_brief.setText(jsonObject.getString("Brief"));
-
-                   if(jsonObject.has("Projects"))
-                       member_projects.setText(jsonObject.getString("Projects"));
-
-
-               } catch (JSONException e) {
-                   e.printStackTrace();
-               }
-               mProgressWheel.setVisibility(View.INVISIBLE);
-           }
-       }, new Response.ErrorListener() {
-           @Override
-           public void onErrorResponse(VolleyError error) {
-               Toast.makeText(getApplicationContext(),"fgh",Toast.LENGTH_SHORT).show();
-
-           }
-       });
-       requestQueue.add(jsonObjectRequest);
-   }
+    }
 }

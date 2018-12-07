@@ -57,8 +57,7 @@
             android:gravity="start|top"
             android:hint="@string/contact_us_your_email"
             android:maxLines="2"
-            android:paddingLeft="8dp">
-        </android.support.v7.widget.AppCompatEditText>
+            android:paddingLeft="8dp"></android.support.v7.widget.AppCompatEditText>
 
         <TextView
             android:id="@+id/invalid_email"
@@ -66,8 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:paddingLeft="16dp"
-            tools:text=" Email valid or not "
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:textAppearance="?android:textAppearanceSmall"
+            tools:text=" Email valid or not " />
 
         <TextView
             android:id="@+id/subject"
@@ -109,8 +108,8 @@
             android:id="@+id/Reason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/your_message_feedback"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#212121" />
@@ -145,8 +144,3 @@
 
     </LinearLayout>
 </ScrollView>
-
-
-
-
-

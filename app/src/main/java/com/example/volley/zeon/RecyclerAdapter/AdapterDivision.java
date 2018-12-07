@@ -2,7 +2,6 @@ package com.example.volley.zeon.RecyclerAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +16,8 @@ import com.example.volley.zeon.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.example.volley.zeon.Util.UtilTools.makeIntentToOpenPhotoInGalleryBrowser;
 
 /**
  * Author of this class is Nabil  in 2018/01/11
@@ -82,18 +83,20 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         holder.mImageMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri ImageMemberUrl = Uri.parse(currentDivision.getImageMemberUrl());
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(ImageMemberUrl, "image/*");
-                mContext.startActivity(Intent.createChooser(intent, "Open [App] images"));
+
+                mContext.startActivity(
+                        makeIntentToOpenPhotoInGalleryBrowser(
+                                currentDivision.getImageMemberUrl()));
+
             }
         });
         holder.mConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent visionIntent = new Intent(mContext, DivisionDetails.class);
-                visionIntent.putExtra("ID",currentDivision.getId());
-                visionIntent.putExtra("IMAGE",currentDivision.getImageMemberUrl());
+                visionIntent.putExtra("ID", currentDivision.getId());
+                visionIntent.putExtra("IMAGE", currentDivision.getImageMemberUrl());
+                visionIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                 mContext.startActivity(visionIntent);
             }
         });

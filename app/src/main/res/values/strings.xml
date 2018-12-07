@@ -10,13 +10,14 @@
     <string name="about_us">About us</string>
     <string name="DetailsDivision">Division Details </string>
     <string name="contact_us">Contact us</string>
+    <string name="DetailsProject">Project Details</string>
     <string name="contact_us_your_name">Your name</string>
     <string name="contact_us_your_Email">Your email</string>
     <string name="contact_us_your_email">like : mahmoudtrro@example.com </string>
     <string name="contact_us_subject">Subject</string>
     <string name="more">More</string>
     <string name="team_Info">We love each other very much</string>
-    <string name="Condition_for_foundtion">we met in Damascus University </string>
+    <string name="Condition_for_foundation">we met in Damascus University </string>
     <string name="contact_us_email"> mahmoudtrro@gmail.com</string>
     <string name="ReasonForContact"> Reason for contact</string>
     <string name="your_message_feedback">Your message </string>
@@ -26,13 +27,18 @@
 
     <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
     <string name="no_internet_connection">No internet connection , Please check it .</string>
+
     <!-- Text to display in the list when there are no Division [CHAR LIMIT=NONE] -->
     <string name="no_Division_Members">No Division Members found.</string>
+
+    <!-- Text to display in the list when there are no Projects [CHAR LIMIT=NONE] -->
+    <string name="no_Project">No Projects found.</string>
+
     <!-- Text to display in the list when there are Error in fetching  Division's data [CHAR LIMIT=NONE] -->
-    <string name="Error_Divisions_Data">Sorry we get an error , Try again .</string>
+    <string name="Error_Fetch_Data">Sorry we get an error , Try again .</string>
+
+
     <!--Other string resources also defined  … -->
-
-
     <string name="feed_back_type1">Financial Aid</string>
     <string name="feed_back_type2">Suggestion</string>
     <string name="feed_back_type3">Praise</string>

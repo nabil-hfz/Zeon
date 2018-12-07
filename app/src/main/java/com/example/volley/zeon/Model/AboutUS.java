@@ -15,8 +15,6 @@ package com.example.volley.zeon.Model;
  */
 
 public class AboutUS {
-
-
     /**
      * Tag for the log messages
      */
@@ -30,16 +28,16 @@ public class AboutUS {
     /**
      * Group photo of the team resource ID .
      */
-    private int mImagePhotoOfTheTeam;
+    private String mImagePhotoOfTheTeam;
 
     /**
      * Address " Contact us " for the team resource .
      */
     private String mAddressContactUsTeam;
 
-    public AboutUS(String mShortSummaryforFoundationTeam, int mImagephotoOfTheTeam, String mAddressContactUsTeam) {
-        this.mShortSummaryForFoundationTeam = mShortSummaryforFoundationTeam;
-        this.mImagePhotoOfTheTeam = mImagephotoOfTheTeam;
+    public AboutUS(String mShortSummaryForFoundationTeam, String mImagePhotoOfTheTeam, String mAddressContactUsTeam) {
+        this.mShortSummaryForFoundationTeam = mShortSummaryForFoundationTeam;
+        this.mImagePhotoOfTheTeam = mImagePhotoOfTheTeam;
         this.mAddressContactUsTeam = mAddressContactUsTeam;
     }
 
@@ -51,11 +49,11 @@ public class AboutUS {
         this.mShortSummaryForFoundationTeam = mShortSummaryforFoundationTeam;
     }
 
-    public int getImagephotoOfTheTeam() {
+    public String getImagePhotoOfTheTeam() {
         return mImagePhotoOfTheTeam;
     }
 
-    public void setImagephotoOfTheTeam(int mImagephotoOfTheTeam) {
+    public void setImagePhotoOfTheTeam(String mImagephotoOfTheTeam) {
         this.mImagePhotoOfTheTeam = mImagephotoOfTheTeam;
     }
 

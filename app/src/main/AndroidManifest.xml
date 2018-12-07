@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.volley.zeon">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,6 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
@@ -27,6 +26,7 @@
         <activity
             android:name=".MenuActivity.DivisionActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation"
             android:label="@string/division"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track">
@@ -39,6 +39,7 @@
         <activity
             android:name=".MenuActivity.ProjectActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation"
             android:label="@string/projects"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track">
@@ -63,6 +64,7 @@
         <activity
             android:name=".MenuActivity.ContactActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation"
             android:label="@string/contact_us"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track">
@@ -75,6 +77,7 @@
         <activity
             android:name=".MenuActivity.aboutUsActivity"
             android:autoRemoveFromRecents="true"
+            android:configChanges="orientation"
             android:label="@string/about_us"
             android:parentActivityName=".MainActivity"
             android:taskAffinity=".Track"
@@ -88,13 +91,25 @@
         <activity
             android:name=".DivisionDetails"
             android:autoRemoveFromRecents="true"
-           android:label="@string/DetailsDivision"
+            android:label="@string/DetailsDivision"
             android:parentActivityName=".MenuActivity.DivisionActivity"
             android:taskAffinity=".Track">
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.volley.zeon.MainActivity" />
+                android:value="com.example.volley.zeon.MenuActivity.DivisionActivity" />
+        </activity>
+        <activity
+            android:name=".ProjectDetails"
+            android:autoRemoveFromRecents="true"
+            android:configChanges="orientation"
+            android:label="@string/DetailsProject"
+            android:parentActivityName=".MenuActivity.ProjectActivity"
+            android:taskAffinity=".Track">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.volley.zeon.MenuActivity.ProjectActivity" />
         </activity>
     </application>
 

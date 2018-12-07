@@ -43,6 +43,13 @@ public class UtilTools {
         return emailIntent;
     }
 
+    public final static Intent makeIntentToOpenPhotoInGalleryBrowser(String ImageUrl) {
+        Uri ImageMemberUrl = Uri.parse(ImageUrl);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(ImageMemberUrl, "image/*");
+        return intent;
+    }
+
     /**
      * This for Enabling https connections
      */

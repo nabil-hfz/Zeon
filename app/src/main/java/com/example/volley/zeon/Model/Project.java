@@ -24,14 +24,27 @@ public class Project {
     private int id;
     private String projectName;
     private String projectBrief;
+    /**
+     * Image resource ID for the project
+     */
+    private String mImageProject;
 
     public Project() {
     }
 
-    public Project(int id, String projectName, String projectBrief) {
+    public Project(int id, String projectName, String projectBrief, String mImageProject) {
         this.id = id;
         this.projectName = projectName;
         this.projectBrief = projectBrief;
+        this.mImageProject = mImageProject;
+    }
+
+    public String getImageProject() {
+        return mImageProject;
+    }
+
+    public void setmImageProject(String mImageProject) {
+        this.mImageProject = mImageProject;
     }
 
     public int getId() {
