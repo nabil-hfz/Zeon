@@ -93,6 +93,8 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         holder.mConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //  Log.v("LOG_TAG" , "\n \n"+ Constants.TEAM_NAME + "    "    + " \n \n");
+
                 Intent visionIntent = new Intent(mContext, DivisionDetails.class);
                 visionIntent.putExtra("ID", currentDivision.getId());
                 visionIntent.putExtra("IMAGE", currentDivision.getImageMemberUrl());
@@ -122,7 +124,8 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
         private ImageView mImageMember;
 
         private ConstraintLayout mConstraintLayout;
-
+        int green;
+        int white;
 
         Holder(View view) {
             super(view);
@@ -135,23 +138,8 @@ public class AdapterDivision extends RecyclerView.Adapter<AdapterDivision.Holder
 
             mConstraintLayout = view.findViewById(R.id.WholeConstraintLayout);
 
+
         }
 
-       /* @Override
-        public void onClick(View view) {
-
-            int position = view.getId();
-            switch (position) {
-                case R.id.member_photo:
-                    // Toast.makeText(mContext,mNameMember.getText().toString(),Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.division_card:
-                    Toast.makeText(mContext, mMajorityMember.getText().toString(), Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    break;
-
-            }
-        }*/
     }
 }

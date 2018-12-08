@@ -10,6 +10,7 @@
     android:id="@+id/division_card"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:foreground="@drawable/card_shadow"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
@@ -17,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="1dp"
-        android:foreground="@drawable/card_shadow"
         card_view:cardCornerRadius="@dimen/card_member_radius"
         tools:targetApi="lollipop">
 
