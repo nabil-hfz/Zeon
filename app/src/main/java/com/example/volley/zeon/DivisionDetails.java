@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.NavUtils;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +52,6 @@ public class DivisionDetails extends AppCompatActivity implements InternetConnec
 
     private RequestQueue mRequestQueue;
 
-    private NestedScrollView mNestedScrollView;
 
     private Animation mAnimation;
 
@@ -83,6 +81,8 @@ public class DivisionDetails extends AppCompatActivity implements InternetConnec
 
     private ConstraintLayout mDetailsDivisionConstraintLayout;
 
+    private ConstraintLayout mDetailCardsConstraintLayout;
+
     private InternetAvailabilityChecker mInternetAvailabilityChecker;
 
     @Override
@@ -110,12 +110,12 @@ public class DivisionDetails extends AppCompatActivity implements InternetConnec
 
         getJsonDetail();
         mAnimation = AnimationUtils.loadAnimation(this, R.anim.from_right);
-        mNestedScrollView.startAnimation(mAnimation);
+        mDetailCardsConstraintLayout.startAnimation(mAnimation);
     }
 
     private void GetUIMethod() {
 
-        mNestedScrollView = findViewById(R.id.NestedScrollView);
+        mDetailCardsConstraintLayout = findViewById(R.id.CardsBlockView);
 
         mProgressWheel = findViewById(R.id.progress_wheel_division_details);
 
@@ -141,6 +141,9 @@ public class DivisionDetails extends AppCompatActivity implements InternetConnec
         mMemberBrief = findViewById(R.id.brief_detail);
 
         mMemberProjects = findViewById(R.id.projects_detail);
+
+
+
 
         mId = getIntent().getExtras().getInt("ID");
 

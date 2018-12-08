@@ -13,27 +13,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/future_vision_image"
-            android:layout_width="@dimen/list_item_future_vision_photo_width"
-            android:layout_height="@dimen/list_item_future_vision_photo_height"
-            android:layout_marginRight="420dp"
-            android:elevation="5dp"
-            android:scaleType="centerCrop"
-            app:civ_border_color="#d3000000"
-            app:civ_border_width="0.5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/vision"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/future_vision" />
+            android:alpha="1"/>
+
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/vision_recycler"
-            android:layout_width="400dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="#81a6a8ff"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/future_vision_image">
+
+
+            >
+
 
         </android.support.v7.widget.RecyclerView>
     </android.support.constraint.ConstraintLayout>

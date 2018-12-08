@@ -50,5 +50,6 @@
     <string name="department">Department</string>
     <string name="skills">Skills</string>
     <string name="brief">Brief</string>
-    <string name="projests">Projests</string>
+    <string name="member_projects">Projects</string>
+
 </resources>

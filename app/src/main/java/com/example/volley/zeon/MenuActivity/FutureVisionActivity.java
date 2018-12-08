@@ -57,7 +57,7 @@ public class FutureVisionActivity extends AppCompatActivity implements InternetC
 
     private AdapterFutureVision adapter;
 
-    private List<FutureVision> futureVisionList = new ArrayList<FutureVision>();
+    private List<FutureVision> futureVisionList = new ArrayList<>();
 
     private RequestQueue mRequestQueue;
 
@@ -99,14 +99,14 @@ public class FutureVisionActivity extends AppCompatActivity implements InternetC
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mImageView.setOnClickListener(new View.OnClickListener() {
+      /*  mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(
                         makeIntentToOpenPhotoInGalleryBrowser(
                                 Constants.TEAM_INFO_IMAGE[0]));
             }
-        });
+        });*/
     }
 
     void GetUIMethod() {
@@ -150,7 +150,7 @@ public class FutureVisionActivity extends AppCompatActivity implements InternetC
     public void getJsonVision() {
 
         futureVisionList.clear();
-        mConstraintLayout.setVisibility(View.INVISIBLE);
+       // mConstraintLayout.setVisibility(View.INVISIBLE);
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 Constants.FUTURE_VISION_URL, (JSONObject) null, new Response.Listener<JSONObject>() {
             @Override
@@ -176,12 +176,12 @@ public class FutureVisionActivity extends AppCompatActivity implements InternetC
 
                     mProgressWheel.setVisibility(View.GONE);
 
-                    mConstraintLayout.setVisibility(View.VISIBLE);
+                   // mConstraintLayout.setVisibility(View.VISIBLE);
 
                     // If there is a valid list of {@link  Divisions }s, then add them to the adapter's
                     // data set. This will trigger the RecyclerView to update.
 
-                    Picasso.get().load(Uri.parse(Constants.TEAM_INFO_IMAGE[0])).fit().centerCrop().into(mImageView);
+                   // Picasso.get().load(Uri.parse(Constants.TEAM_INFO_IMAGE[0])).fit().centerCrop().into(mImageView);
 
                     if (futureVisionList != null && !futureVisionList.isEmpty()) {
 
