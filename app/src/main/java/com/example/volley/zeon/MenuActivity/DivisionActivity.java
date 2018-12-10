@@ -2,9 +2,7 @@ package com.example.volley.zeon.MenuActivity;
 
 import android.app.TaskStackBuilder;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -28,7 +26,6 @@ import com.example.volley.zeon.RecyclerAdapter.AdapterDivision;
 import com.example.volley.zeon.Util.Constants;
 import com.example.volley.zeon.Util.UtilTools;
 import com.example.volley.zeon.widget.ProgressWheelFolder.ProgressWheel;
-import com.example.volley.zeon.widget.WaveSwipeRefreshFolder.WaveSwipeRefreshLayout;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
@@ -76,7 +73,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
     private InternetAvailabilityChecker mInternetAvailabilityChecker;
 
-    private WaveSwipeRefreshLayout mWaveSwipeRefreshLayout;
 
 
     @Override
@@ -111,12 +107,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mRecyclerView.setAdapter(mDivisionAdapter);
 
-        mWaveSwipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refresh();
-            }
-        });
     }
 
 
@@ -126,20 +116,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
 
         mEmptyStateTextView = findViewById(R.id.empty_textView_division);
 
-        mWaveSwipeRefreshLayout = findViewById(R.id.main_swipe);
-        mWaveSwipeRefreshLayout.setWaveColor(Color.argb(255, 220, 160, 60));
-
         mRecyclerView = findViewById(R.id.recycler_view);
-    }
-
-    private void refresh() {
-        getJsonDivision();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mWaveSwipeRefreshLayout.setRefreshing(false);
-            }
-        }, 4000);
     }
 
     //Implement InternetConnectivityListener interface
@@ -170,7 +147,7 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
     private void getJsonDivision() {
 
         mDivisionList.clear();
-        mRecyclerView.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.DIVISION_URL,
                 (JSONObject) null, new Response.Listener<JSONObject>() {
@@ -202,8 +179,6 @@ public class DivisionActivity extends AppCompatActivity implements InternetConne
                     // If there is a valid list of {@link  Divisions }s, then add them to the adapter's
                     // data set. This will trigger the RecyclerView to update.
                     if (mDivisionList != null && !mDivisionList.isEmpty()) {
-
-                        mWaveSwipeRefreshLayout.setRefreshing(false);
 
                         // Update the adapter with new Inf
                         mDivisionAdapter.notifyDataSetChanged();

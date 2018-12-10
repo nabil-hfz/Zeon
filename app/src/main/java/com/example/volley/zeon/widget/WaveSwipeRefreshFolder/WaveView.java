@@ -488,7 +488,7 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
     private void updateMaxDropHeight(int height) {
         if (500 * (mWidth / 1440.f) > height) {
             Log.w("WaveView", "DropHeight is more than " + 500 * (mWidth / 1440.f));
-            return;
+            //  return;
         }
         mMaxDropHeight = (int) Math.min(height, getHeight() - mDropCircleRadius);
         if (mIsManualRefreshing) {

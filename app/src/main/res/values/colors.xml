@@ -14,4 +14,11 @@
     <color name="valid_Email_Text">#558B2F</color>
     <color name="valid_Email_EditText">#64DD17</color>
     <color name="progressBarColor">#CD295A</color>
+
+    <!--  ...................................-->
+    <color name="colorPrimaryTextDefaultMaterialLight">#DE000000</color>
+    <color name="colorSecondaryTextDefaultMaterialLight">#8A000000</color>
+
+    <color name="colorPrimaryTextDefaultMaterialDark">#FFFFFFFF</color>
+    <color name="colorSecondaryTextDefaultMaterialDark">#B3FFFFFF</color>
 </resources>

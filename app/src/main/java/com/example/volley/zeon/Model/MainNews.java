@@ -14,6 +14,7 @@ public class MainNews {
         this.projectBrief = projectBrief;
     }
 
+
     public int getId() {
         return id;
     }

@@ -8,17 +8,14 @@
     android:background="@android:color/darker_gray"
     android:orientation="vertical">
 
-    <com.example.volley.zeon.widget.WaveSwipeRefreshFolder.WaveSwipeRefreshLayout
-        android:id="@+id/main_swipe"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.example.volley.zeon.widget.WaveSwipeRefreshFolder.WaveSwipeRefreshLayout>
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/empty_textView_division"
